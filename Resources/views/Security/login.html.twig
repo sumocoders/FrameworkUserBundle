@@ -1,0 +1,61 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+{% trans_default_domain 'FOSUserBundle' %}
+
+{# @todo    fix locale, constants #}
+
+{% block fos_user_content %}
+    <div class="container">
+        <section id="users" class="login">
+            <div class="row-fluid">
+                <div class="span12">
+                    <header class="header hide">
+                        <h2>Aanmelden</h2>
+                    </header>
+
+                    <a href="/" class="logo">Sumocoders</a>
+
+                    <form action="{{ path("fos_user_security_check") }}" method="post">
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+
+                        {% if error %}
+                            <div class="alert alert-info">
+                                {{ error|trans }}
+                            </div>
+                        {% endif %}
+
+                        {# @todo required-stuff vertalen #}
+                        {# @todo form decorators onderzoeken #}
+                        <fieldset>
+                            <div class="control-group">
+                                <label class="control-label" for="username">{{ 'security.login.username'|trans }}<abbr title="Verplicht in te vullen.">*</abbr></label>
+                                <div class="controls input-prepend">
+                                    <div class="add-on username"></div>
+                                    <input value="{{ last_username }}" id="username" name="_username" type="text" class="inputText" required /></div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label" for="password">{{ 'security.login.password'|trans }}<abbr title="Verplicht in te vullen.">*</abbr></label>
+                                <div class="controls input-prepend">
+                                    <div class="add-on password"></div>
+                                    <input type="password" value="" id="password" name="_password" class="inputPassword" required />
+                                </div>
+                            </div>
+
+                            <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+                            <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+
+                            <button type="submit" id="submit" name="_submit" class="btn btn-primary btn-block">{{ 'security.login.submit'|trans }}<i class="icon iconArrowWhiteRight"></i></button>
+
+                            {# @todo fix me #}
+                            <div class="forgotPassword">
+                                <small>
+                                    <a href="/nl/users/forgot-password">Wachtwoord vergeten?</a>
+                                </small>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+{% endblock fos_user_content %}
