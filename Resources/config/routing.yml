@@ -1,0 +1,6 @@
+sumo_coders_framework_user_user:
+    resource: "@SumoCodersFrameworkUserBundle/Controller/"
+    type:     annotation
+
+sumo_coders_framework_user_fos:
+    resource: "@SumoCodersFrameworkUserBundle/Resources/config/routing/fos.yml"
