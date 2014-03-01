@@ -9,10 +9,11 @@
 {% block header_navigation %}
     <ul>
         <li>
-            <a class="iconEdit" href="{{ path('fos_user_profile_edit') }}">{{ 'header.navigation.actions.edit'|trans }}</a>
+            <a class="iconEdit" href="{{ path('fos_user_profile_edit') }}">{{ 'header.navigation.actions.edit'|trans|capitalize }}</a>
         </li>
         <li>
-            <a class="iconList" href="#">{{ 'header.navigation.actions.overview'|trans }}</a>{# @todo fix me #}
+            <a class="iconList" href="#">{{ 'header.navigation.actions.overview'|trans|capitalize }}</a>
+            {# @todo parse link to overview, only when it is an admin, and when the action is implemented #}
         </li>
     </ul>
 {% endblock %}

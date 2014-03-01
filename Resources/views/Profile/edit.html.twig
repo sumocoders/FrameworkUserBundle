@@ -8,7 +8,10 @@
 
 {% block header_navigation %}
     <ul>
-        <li><a class="iconList" href="#">{{ 'header.navigation.actions.overview'|trans }}</a></li>{# @todo parse link to overview when the action is implemented #}
+        <li>
+            <a class="iconList" href="#">{{ 'header.navigation.actions.overview'|trans|capitalize }}</a>
+            {# @todo parse link to overview, only when it is an admin, and when the action is implemented #}
+        </li>
     </ul>
 {% endblock %}
 
