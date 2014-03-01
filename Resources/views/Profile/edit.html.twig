@@ -1,0 +1,17 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% block header_title %}
+    <h2>
+        {{ 'header.title.edit'|trans({'%entity%' : 'user'})|capitalize }}{# @todo parse username #}
+    </h2>
+{% endblock %}
+
+{% block header_navigation %}
+    <ul>
+        <li><a class="iconList" href="#">{{ 'header.navigation.actions.overview'|trans }}</a></li>{# @todo parse link to overview when the action is implemented #}
+    </ul>
+{% endblock %}
+
+{% block fos_user_content %}
+    {% include "FOSUserBundle:Profile:edit_content.html.twig" %}
+{% endblock fos_user_content %}

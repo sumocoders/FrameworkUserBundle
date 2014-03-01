@@ -1,29 +1,6 @@
-<!doctype html>
-{# @todo populate language#}
-<html lang="">
-{{ include('SumoCodersFrameworkCoreBundle::head.html.twig') }}
+{% extends '::base.html.twig' %}
 
-{# @todo populate the class with the module and action#}
-<body class="users login">
-    <!--[if lt IE 8 ]>
-        <div id="ie6" class="alert alert-block" role="alert">
-            <a href="#" class="close" data-dismiss="alert" title="{{ 'dialogs.close'|trans|capitalize }}">x</a>
-            {{ 'core.warnings.oldBrowser'|trans }}
-        </div>
-    <![endif]-->
-
-    {# @todo style me #}
-    {% for type, messages in app.session.flashbag.all() %}
-        {% for message in messages %}
-            <div class="flash-{{ type }}">
-                {{ message }}
-            </div>
-        {% endfor %}
-    {% endfor %}
-
+{% block main -%}
     {% block fos_user_content %}
     {% endblock fos_user_content %}
-
-    {% block javascripts %}{% endblock %}
-</body>
-</html>
+{% endblock %}

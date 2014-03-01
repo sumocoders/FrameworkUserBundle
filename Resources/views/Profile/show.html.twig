@@ -1,0 +1,22 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% block header_title %}
+    <h2>
+        {{ 'header.title.show'|trans({'%entity%' : user})|capitalize }}
+    </h2>
+{% endblock %}
+
+{% block header_navigation %}
+    <ul>
+        <li>
+            <a class="iconEdit" href="{{ path('fos_user_profile_edit') }}">{{ 'header.navigation.actions.edit'|trans }}</a>
+        </li>
+        <li>
+            <a class="iconList" href="#">{{ 'header.navigation.actions.overview'|trans }}</a>{# @todo fix me #}
+        </li>
+    </ul>
+{% endblock %}
+
+{% block fos_user_content %}
+    {% include "FOSUserBundle:Profile:show_content.html.twig" %}
+{% endblock fos_user_content %}
