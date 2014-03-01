@@ -1,0 +1,18 @@
+{% extends '::base.html.twig' %}
+
+{% block header_title %}
+    <h2>
+        {{ 'header.title.add'|trans({'%entity%' : 'user'})|capitalize }}
+    </h2>
+{% endblock %}
+
+{% block header_navigation %}
+    <ul>
+        <li><a class="iconList" href="{{ path('user') }}">{{ 'header.navigation.actions.overview'|trans }}</a></li>
+    </ul>
+{% endblock %}
+
+
+{% block main -%}
+    {{ form(form) }}
+{% endblock %}

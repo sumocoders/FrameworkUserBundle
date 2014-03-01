@@ -1,0 +1,27 @@
+{% extends '::base.html.twig' %}
+
+{% block header_title %}
+    <h2>
+        {{ 'header.title.show'|trans({'%entity%' : 'user'})|capitalize }}
+    </h2>
+{% endblock %}
+
+{% block header_navigation %}
+    <ul>
+        <li><a class="iconEdit" href="{{ path('user_edit', { 'id': entity.id }) }}">{{ 'header.navigation.actions.edit'|trans }}</a></li>
+        <li><a class="iconList" href="{{ path('user') }}">{{ 'header.navigation.actions.overview'|trans }}</a></li>
+    </ul>
+{% endblock %}
+
+
+{% block main -%}
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+</ul>
+{% endblock %}
