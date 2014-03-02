@@ -1,0 +1,14 @@
+{% extends "SumoCodersFrameworkUserBundle::empty_layout.html.twig" %}
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block header_title %}
+    <h2>
+        {{ 'header.title.request'|trans({},'messages')|capitalize }}
+    </h2>
+{% endblock %}
+
+{% block fos_user_content %}
+    <div class="alert alert-success">
+        {{ 'resetting.check_email'|trans({'%email%': email}) }}
+    </div>
+{% endblock fos_user_content %}

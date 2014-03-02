@@ -1,0 +1,37 @@
+{% extends "SumoCodersFrameworkUserBundle::empty_layout.html.twig" %}
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block header_title %}
+    <h2>
+        {{ 'header.title.request'|trans({},'messages')|capitalize }}
+    </h2>
+{% endblock %}
+
+{% block fos_user_content %}
+    <form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request">
+        {% if invalid_username is defined %}
+            <div class="alert alert-error">
+                {{ 'resetting.request.invalid_username'|trans({'%username%': invalid_username}) }}
+            </div>
+        {% endif %}
+
+        <fieldset>
+            <div class="control-group">
+                <label class="control-label" for="username">
+                    {{ 'resetting.request.username'|trans }}<abbr title="{{ 'forms.errors.fieldIsRequired'|trans({},'messages')|capitalize }}">*</abbr>
+                </label>
+
+                <div class="controls input-prepend">
+                    <div class="add-on username"></div>
+                    <input id="username" name="username" type="text" class="inputText" required />
+                </div>
+            </div>
+
+            <button type="submit" id="submit" name="_submit" class="btn btn-primary btn-block">
+                {{ 'resetting.request.submit'|trans }}
+                <i class="icon iconArrowWhiteRight"></i>
+            </button>
+        </fieldset>
+    </form>
+
+{% endblock fos_user_content %}
