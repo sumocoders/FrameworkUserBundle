@@ -2,7 +2,7 @@
 
 {% block header_title %}
     <h2>
-        {{ 'header.title.edit'|trans({'%entity%' : 'user'})|capitalize }}{# @todo parse username #}
+        {{ 'header.title.edit'|trans({'%entity%' : app.user })|capitalize }}
     </h2>
 {% endblock %}
 
