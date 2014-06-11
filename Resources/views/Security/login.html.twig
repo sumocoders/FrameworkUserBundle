@@ -18,33 +18,38 @@
         {% endif %}
 
         <fieldset>
-            <div class="control-group">
-                <label class="control-label" for="username">{{ 'security.login.username'|trans }}
-                    <abbr title="{{ 'forms.errors.fieldIsRequired'|trans({},'messages')|capitalize }}">*</abbr></label>
+            <div class="form-group">
+                <label class="control-label" for="username">
+                    {{ 'security.login.username'|trans }}<abbr title="{{ 'forms.errors.fieldIsRequired'|trans({},'messages')|capitalize }}">*</abbr>
+                </label>
 
-                <div class="controls input-prepend">
-                    <div class="add-on username"></div>
-                    <input value="{{ last_username }}" id="username" name="_username" type="text" class="inputText" required />
+                <div class="input-group">
+                    <div class="input-group-addon username"></div>
+                    <input value="{{ last_username }}" id="username" name="_username" type="text" class="form-control input-lg" required />
                 </div>
             </div>
 
-            <div class="control-group">
-                <label class="control-label" for="password">{{ 'security.login.password'|trans }}
-                    <abbr title="{{ 'forms.errors.fieldIsRequired'|trans({},'messages')|capitalize }}">*</abbr></label>
+            <div class="form-group">
+                <label class="control-label" for="password">
+                    {{ 'security.login.password'|trans }}<abbr title="{{ 'forms.errors.fieldIsRequired'|trans({},'messages')|capitalize }}">*</abbr>
+                </label>
 
-                <div class="controls input-prepend">
-                    <div class="add-on password"></div>
-                    <input type="password" value="" id="password" name="_password" class="inputPassword" required />
+                <div class="input-group">
+                    <div class="input-group-addon password"></div>
+                    <input type="password" value="" id="password" name="_password" class="form-control input-lg" required />
                 </div>
             </div>
 
-            <label for="remember_me" class="checkbox">
-                <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
-                {{ 'security.login.remember_me'|trans }}
-            </label>
+            <div class="checkbox">
+                <label for="remember_me" class="checkbox">
+                    <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+                    {{ 'security.login.remember_me'|trans }}
+                </label>
+            </div>
 
-            <button type="submit" id="submit" name="_submit" class="btn btn-primary btn-block">{{ 'security.login.submit'|trans }}
-                <i class="icon iconArrowWhiteRight"></i></button>
+            <button type="submit" id="submit" name="_submit" class="btn btn-lg btn-block">
+                {{ 'security.login.submit'|trans }}<i class="icon iconArrowWhiteRight"></i>
+            </button>
 
             <div class="forgotPassword">
                 <small>
