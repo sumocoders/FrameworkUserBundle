@@ -13,6 +13,13 @@ services:
       - @fos_user.util.email_canonicalizer
       - @fos_user.entity_manager
       - SumoCoders\FrameworkUserBundle\Entity\User
+  user.add.form.type:
+    class: SumoCoders\FrameworkUserBundle\Form\AddUserType
+    arguments:
+      - fos_user.model_user.class
+    tags:
+      - { name: form.type, alias: framework_user_add }
+
 # FOS User Configuration
 fos_user:
     db_driver: orm
