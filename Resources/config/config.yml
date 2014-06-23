@@ -25,3 +25,6 @@ fos_user:
     db_driver: orm
     firewall_name: main
     user_class: SumoCoders\FrameworkUserBundle\Entity\User
+  service:
+    user_manager: custom_user_manager
+
