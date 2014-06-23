@@ -15,8 +15,13 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 class DefaultController extends Controller
 {
     /**
+     * Add a user
+     *
      * @Route("/add")
      * @Template()
+     *
+     * @param Request $request
+     * @return array
      */
     public function addAction(Request $request)
     {
