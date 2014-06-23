@@ -1,3 +1,18 @@
+services:
+  kernel.listener.search_listener:
+    class: SumoCoders\FrameworkUserBundle\EventListener\SearchListener
+    arguments:
+      - @service_container
+    tags:
+      - { name: kernel.event_listener, event: search.search, method: onSearch }
+  custom_user_manager:
+    class: SumoCoders\FrameworkUserBundle\Model\FrameworkUserManager
+    arguments:
+      - @security.encoder_factory
+      - @fos_user.util.username_canonicalizer
+      - @fos_user.util.email_canonicalizer
+      - @fos_user.entity_manager
+      - SumoCoders\FrameworkUserBundle\Entity\User
 # FOS User Configuration
 fos_user:
     db_driver: orm
