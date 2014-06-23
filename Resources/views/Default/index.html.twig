@@ -1,0 +1,45 @@
+{% extends '::base.html.twig' %}
+
+{% block header_title %}
+    <h2>
+        {{ 'user.header.title.index'|trans|capitalize }}
+    </h2>
+{% endblock %}
+
+{% block header_navigation %}
+    <ul>
+        <li>
+            <a class="iconAdd" href="{{ path('sumocoders_frameworkuser_default_add') }}">{{ 'header.navigation.actions.add'|trans|capitalize }}</a>
+        </li>
+    </ul>
+{% endblock %}
+
+{% block main %}
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>{{ 'user.table.overview.header.username'|trans|capitalize }}</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for article in dgUsers %}
+                <tr class="{% if not article.enabled %}striked{% endif %}">
+                    <td>{{ article.username }}</td>
+                    <td class="action">
+                        <a href="{{ path('sumocoders_frameworkuser_default_edit', {'id': article.id}) }}" class="iconLink">
+                            {{ icon('pencil') }}
+                            <span class="hide">
+                                {{ 'datagrids.actions.edit'|trans }}
+                            </span>
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {{ knp_pagination_render(dgUsers) }}
+
+{% endblock %}
+
+

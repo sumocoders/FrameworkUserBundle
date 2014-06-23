@@ -15,6 +15,30 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 class DefaultController extends Controller
 {
     /**
+     * Overview of all the users
+     *
+     * @Route("/overview")
+     * @Template()
+     */
+    public function indexAction()
+    {
+        /** @var $userManager \SumoCoders\FrameworkUserBundle\Model\FrameworkUserManager */
+        $userManager = $this->container->get('fos_user.user_manager');
+        $users = $userManager->findUsers();
+
+        /** @var $paginator \Knp\Component\Pager\Paginator */
+        $paginator = $this->get('knp_paginator');
+        $paginatedUsers = $paginator->paginate(
+            $users,
+            $this->get('request')->query->get('page', 1)
+        );
+
+        return array(
+            'dgUsers' => $paginatedUsers,
+        );
+    }
+
+    /**
      * Add a user
      *
      * @Route("/add")

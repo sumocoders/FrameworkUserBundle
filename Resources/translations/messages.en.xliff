@@ -72,7 +72,7 @@
       </trans-unit>
       <trans-unit id="a8edd7d883e67e2bbd4553b15d94c47d75997a66" resname="user.header.title.index">
         <source>user.header.title.index</source>
-        <target>overview</target>
+        <target>users overview</target>
       </trans-unit>
       <trans-unit id="950de5d9bfb61f0221e2192eb5881f4753c22f5c" resname="user.table.overview.header.username">
         <source>user.table.overview.header.username</source>
