@@ -2,7 +2,7 @@
 
 namespace SumoCoders\FrameworkUserBundle\Controller;
 
-use SumoCoders\FrameworkUserBundle\Form\AddUserType;
+use SumoCoders\FrameworkUserBundle\Form\UserType;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -50,7 +50,7 @@ class DefaultController extends Controller
     public function addAction(Request $request)
     {
         $form = $this->createForm(
-            new AddUserType('\SumoCoders\FrameworkUserBundle\Entity\User')
+            new UserType('\SumoCoders\FrameworkUserBundle\Entity\User')
         );
 
         $form->handleRequest($request);
