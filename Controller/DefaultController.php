@@ -75,6 +75,23 @@ class DefaultController extends Controller
                 $translator->trans('user.flash.success.add', array('username' => $user->getUsername()))
             );
 
+            if (array_key_exists(
+                'SumoCodersFrameworkSearchBundle',
+                $this->container->getParameter('kernel.bundles')
+            )
+            ) {
+                $searchIndexItems = \SumoCoders\FrameworkSearchBundle\Entity\IndexItem::createMultipleObjectsBasedOnProperties(
+                    'SumoCoders\FrameworkUserBundle\Entity\User',
+                    $user->getId(),
+                    array('username', 'email'),
+                    $user
+                );
+
+                $event = new \SumoCoders\FrameworkSearchBundle\Event\IndexUpdateEvent();
+                $event->setObjects($searchIndexItems);
+                $this->get('event_dispatcher')->dispatch('search.index.update', $event);
+            }
+
             return $this->redirect(
                 $this->generateUrl(
                     'sumocoders_frameworkuser_default_index'
@@ -121,7 +138,6 @@ class DefaultController extends Controller
             );
         }
 
-
         // if the current user is editing itself it should see the password field
         if ($currentUser->getId() == $user->getId()) {
             $type = new OwnUserType('\SumoCoders\FrameworkUserBundle\Entity\User');
@@ -136,6 +152,23 @@ class DefaultController extends Controller
         if ($form->isValid()) {
             $user = $form->getData();
             $userManager->updateUser($user);
+
+            if (array_key_exists(
+                'SumoCodersFrameworkSearchBundle',
+                $this->container->getParameter('kernel.bundles')
+            )
+            ) {
+                $searchIndexItems = \SumoCoders\FrameworkSearchBundle\Entity\IndexItem::createMultipleObjectsBasedOnProperties(
+                    'SumoCoders\FrameworkUserBundle\Entity\User',
+                    $user->getId(),
+                    array('username', 'email'),
+                    $user
+                );
+
+                $event = new \SumoCoders\FrameworkSearchBundle\Event\IndexUpdateEvent();
+                $event->setObjects($searchIndexItems);
+                $this->get('event_dispatcher')->dispatch('search.index.update', $event);
+            }
 
             $session->getFlashBag()->add(
                 'success',
