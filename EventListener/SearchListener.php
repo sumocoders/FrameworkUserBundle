@@ -22,11 +22,19 @@ class SearchListener implements ContainerAwareInterface
         $this->setContainer($container);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function setContainer(ContainerInterface $container = null)
     {
         $this->container = $container;
     }
 
+    /**
+     * Will be executed when the search.search-event is triggered
+     *
+     * @param SearchEvent $event
+     */
     public function onSearch(SearchEvent $event)
     {
         $ids = $event->getFoundIdsForClass('SumoCoders\FrameworkUserBundle\Entity\User');
@@ -37,13 +45,9 @@ class SearchListener implements ContainerAwareInterface
         $userManager = $this->container->get('fos_user.user_manager');
         $users = $userManager->findActiveByIds($ids);
 
-        if(!empty($users))
-        {
-            foreach($users as $user)
-            {
+        if (!empty($users)) {
+            foreach ($users as $user) {
                 /** @var $user \SumoCoders\FrameworkUserBundle\Entity\User */
-
-                // @todo    use correct route
                 $result = new SearchResult(
                     'SumoCoders\FrameworkUserBundle\Entity\User',
                     $user->getId(),
