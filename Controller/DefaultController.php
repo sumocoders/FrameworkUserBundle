@@ -62,6 +62,7 @@ class DefaultController extends Controller
             $userManager = $this->container->get('fos_user.user_manager');
             /** @var \SumoCoders\FrameworkUserBundle\Entity\User $user */
             $user = $form->getData();
+            $user->setEnabled(true);
             $userManager->updateUser($user);
 
             /** @var \Symfony\Component\HttpFoundation\Session\Session $session */
