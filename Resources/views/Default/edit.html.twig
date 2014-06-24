@@ -16,34 +16,33 @@
 
 {% block fos_user_content %}
     {{ form_start(form) }}
-    {{ form_errors(form) }}
-    {{ form_widget(form) }}
+        {{ form_errors(form) }}
+        {{ form_widget(form) }}
 
-    <div class="form-group">
-        <div class="col-lg-9 col-lg-offset-3">
+        <div class="form-group">
+            <div class="col-lg-9 col-lg-offset-3">
             <input type="submit" class="btn btn-primary" value="{{ 'forms.general.buttons.edit'|trans|capitalize }}" />
 
-            {% if user.enabled %}
-    <a href="{{ path('sumocoders_frameworkuser_default_block', {'id': user.id}) }}"
-        class="btn btn-danger confirmPostForm"
-        data-field-token="{{ token }}"
-                        data-message="{{ 'dialogs.messages.confirmBlock'|trans({'entity' : user.username }) }}"
-     >
-        {{ icon('remove') }}
-        {{ 'forms.editUser.buttons.block'|trans|capitalize }}
-    </a>
-            {% else %}
-                <a href="{{ path('sumocoders_frameworkuser_default_unblock', {'id': user.id}) }}"
-                        class="btn confirmPostForm"
-                        data-field-token="{{ token }}"
-                        data-message="{{ 'dialogs.messages.confirmUnblock'|trans({'entity' : user.username }) }}"
-                        >
-                    {{ icon('ok') }}
-                    {{ 'forms.editUser.buttons.unblock'|trans|capitalize }}
-                </a>
-            {% endif %}
+                {% if user.enabled %}
+                    <a href="{{ path('sumocoders_frameworkuser_default_block', {'id': user.id}) }}"
+                            class="btn btn-danger confirmPostForm"
+                            data-field-token="{{ token }}"
+                            data-message="{{ 'dialogs.messages.confirmBlock'|trans({'entity' : user.username }) }}"
+                            >
+                        {{ icon('remove') }}
+                        {{ 'forms.editUser.buttons.block'|trans|capitalize }}
+                    </a>
+                {% else %}
+                    <a href="{{ path('sumocoders_frameworkuser_default_unblock', {'id': user.id}) }}"
+                            class="btn confirmPostForm"
+                            data-field-token="{{ token }}"
+                            data-message="{{ 'dialogs.messages.confirmUnblock'|trans({'entity' : user.username }) }}"
+                            >
+                        {{ icon('ok') }}
+                        {{ 'forms.editUser.buttons.unblock'|trans|capitalize }}
+                    </a>
+                {% endif %}
+            </div>
         </div>
-    </div>
     {{ form_end(form) }}
-
 {% endblock fos_user_content %}

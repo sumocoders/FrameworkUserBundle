@@ -136,9 +136,6 @@ class DefaultController extends Controller
             $user = $form->getData();
             $userManager->updateUser($user);
 
-            /** @var \Symfony\Bundle\FrameworkBundle\Translation\Translator $translator */
-            $translator = $this->get('translator');
-
             $session->getFlashBag()->add(
                 'success',
                 $translator->trans('user.flash.success.edit', array('username' => $user->getUsername()))

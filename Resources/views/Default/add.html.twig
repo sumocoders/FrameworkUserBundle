@@ -17,14 +17,12 @@
 {% block fos_user_content %}
     {{ form_start(form) }}
         {{ form_errors(form) }}
-
         {{ form_widget(form) }}
 
-    <div class="form-group">
-        <div class="col-lg-9 col-lg-offset-3">
-            <input type="submit" class="btn btn-primary" value="{{ 'forms.general.buttons.add'|trans|capitalize }}" />
+        <div class="form-group">
+            <div class="col-lg-9 col-lg-offset-3">
+                <input type="submit" class="btn btn-primary" value="{{ 'forms.general.buttons.add'|trans|capitalize }}" />
+            </div>
         </div>
-    </div>
-
     {{ form_end(form) }}
 {% endblock fos_user_content %}
