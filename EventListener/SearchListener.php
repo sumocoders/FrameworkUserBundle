@@ -31,6 +31,8 @@ class SearchListener implements ContainerAwareInterface
     {
         $ids = $event->getFoundIdsForClass('SumoCoders\FrameworkUserBundle\Entity\User');
 
+        /** @var \Symfony\Bundle\FrameworkBundle\Routing\Router $router */
+        $router = $this->container->get('router');
         /** @var $userManager \SumoCoders\FrameworkUserBundle\Model\FrameworkUserManager */
         $userManager = $this->container->get('fos_user.user_manager');
         $users = $userManager->findActiveByIds($ids);
@@ -47,7 +49,10 @@ class SearchListener implements ContainerAwareInterface
                     $user->getId(),
                     'users',
                     $user->getUsername(),
-                    'route'
+                    $router->generate(
+                        'sumocoders_frameworkuser_default_edit',
+                        array('id' => $user->getId())
+                    )
                 );
 
                 $event->addResult($result);
