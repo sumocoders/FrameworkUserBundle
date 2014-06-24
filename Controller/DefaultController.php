@@ -173,56 +173,7 @@ class DefaultController extends Controller
      */
     public function blockAction(Request $request)
     {
-        /** @var \Symfony\Component\Form\Extension\Csrf\CsrfProvider\CsrfTokenManagerAdapter $csrfProvider */
-        $csrfProvider = $this->get('form.csrf_provider');
-        /** @var \Symfony\Component\HttpFoundation\Session\Session $session */
-        $session = $this->get('session');
-        /** @var \Symfony\Bundle\FrameworkBundle\Translation\Translator $translator */
-        $translator = $this->get('translator');
-
-        $token = $request->get('token');
-        $id = (int) $request->get('id');
-
-        // validate our token
-        if (!$csrfProvider->isCsrfTokenValid('block_unblock', $token)) {
-            $session->getFlashBag()->add(
-                'error',
-                $translator->trans('forms.errors.invalidToken')
-            );
-
-            return $this->redirect(
-                $this->generateUrl(
-                    'sumocoders_frameworkuser_default_edit',
-                    array('id' => $id)
-                )
-            );
-        }
-
-        /** @var \SumoCoders\FrameworkUserBundle\Model\FrameworkUserManager $userManager */
-        $userManager = $this->container->get('fos_user.user_manager');
-        /** @var \SumoCoders\FrameworkUserBundle\Entity\User $user */
-        $user = $userManager->findUserBy(array('id' => $id));
-
-        // validate the user
-        if (!$user) {
-            throw new NotFoundHttpException(
-                $translator->trans('core.errors.notFound')
-            );
-        }
-
-        $user->setEnabled(false);
-        $userManager->updateUser($user);
-
-        $session->getFlashBag()->add(
-            'success',
-            $translator->trans('user.flash.success.blocked', array('entity' => $user->getUsername()))
-        );
-
-        return $this->redirect(
-            $this->generateUrl(
-                'sumocoders_frameworkuser_default_index'
-            )
-        );
+        return $this->handleBlockUnBlock('block', $request);
     }
 
     /**
@@ -236,6 +187,17 @@ class DefaultController extends Controller
      * @return array
      */
     public function unblockAction(Request $request)
+    {
+        return $this->handleBlockUnBlock('unblock', $request);
+    }
+
+    /**
+     * @param string  $type
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+     */
+    private function handleBlockUnBlock($type, Request $request)
     {
         /** @var \Symfony\Component\Form\Extension\Csrf\CsrfProvider\CsrfTokenManagerAdapter $csrfProvider */
         $csrfProvider = $this->get('form.csrf_provider');
@@ -274,12 +236,20 @@ class DefaultController extends Controller
             );
         }
 
-        $user->setEnabled(true);
+        if ($type == 'unblock') {
+            $enabled = true;
+            $message = 'user.flash.success.unblocked';
+        } else {
+            $enabled = false;
+            $message = 'user.flash.success.blocked';
+        }
+
+        $user->setEnabled($enabled);
         $userManager->updateUser($user);
 
         $session->getFlashBag()->add(
             'success',
-            $translator->trans('user.flash.success.unblocked', array('entity' => $user->getUsername()))
+            $translator->trans($message, array('entity' => $user->getUsername()))
         );
 
         return $this->redirect(
