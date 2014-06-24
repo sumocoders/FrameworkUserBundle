@@ -15,7 +15,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 class DefaultController extends Controller
 {
     /**
-     * Overview of all the users
+     * Show an overview of all the users
      *
      * @Route("/overview")
      * @Template()
@@ -105,11 +105,12 @@ class DefaultController extends Controller
         $session = $this->get('session');
         /** @var \Symfony\Bundle\FrameworkBundle\Translation\Translator $translator */
         $translator = $this->get('translator');
+
         $token = $request->get('token');
         $id = (int) $request->get('id');
 
         // validate our token
-        if (!$csrfProvider->isCsrfTokenValid('sumocoders_frameworkuser_default_block', $token)) {
+        if (!$csrfProvider->isCsrfTokenValid('block_unblock', $token)) {
             $session->getFlashBag()->add(
                 'error',
                 $translator->trans('forms.errors.invalidToken')

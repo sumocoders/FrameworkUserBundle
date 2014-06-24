@@ -82,6 +82,10 @@
         <source>forms.editUser.buttons.block</source>
         <target>block</target>
       </trans-unit>
+      <trans-unit id="18cbaa7a212a4ebb5aa2e50de42ed7d0209e4933" resname="dialogs.messages.confirmBlock">
+        <source>dialogs.messages.confirmBlock</source>
+        <target>Are you sure you want to block entity?</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

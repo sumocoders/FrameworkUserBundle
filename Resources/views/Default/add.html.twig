@@ -20,7 +20,11 @@
 
         {{ form_widget(form) }}
 
-    <input type="submit" value="{{ 'forms.general.buttons.add'|trans }}" />
+    <div class="form-group">
+        <div class="col-lg-9 col-lg-offset-3">
+            <input type="submit" class="btn btn-primary" value="{{ 'forms.general.buttons.add'|trans|capitalize }}" />
+        </div>
+    </div>
 
     {{ form_end(form) }}
 {% endblock fos_user_content %}
