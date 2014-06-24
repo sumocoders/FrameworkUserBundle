@@ -58,6 +58,10 @@
         <source>user.flash.success.add</source>
         <target>The user %username% was added successfully.</target>
       </trans-unit>
+        <trans-unit id="ddb8f2197cb5c43f5e5bf4043e5a32a4285d0e3d" resname="user.flash.success.edit">
+            <source>user.flash.success.edit</source>
+            <target>The user %username% was edited successfully.</target>
+        </trans-unit>
       <trans-unit id="ddb8f2197cb5c43f5e5bf4043e5a32a4285d0e3f" resname="user.flash.success.blocked">
         <source>user.flash.success.blocked</source>
         <target>The user entity was blocked successfully.</target>
@@ -93,6 +97,10 @@
       <trans-unit id="18cbaa7a212a4ebb5aa2e50de42ed7d0209e4933" resname="dialogs.messages.confirmBlock">
         <source>dialogs.messages.confirmBlock</source>
         <target>Are you sure you want to block entity?</target>
+      </trans-unit>
+      <trans-unit id="18cbaa7a212a4ebb5aa2e50de42ed7d0209e4934" resname="dialogs.messages.confirmUnblock">
+        <source>dialogs.messages.confirmUnblock</source>
+        <target>Are you sure you want to unblock entity?</target>
       </trans-unit>
     </body>
   </file>
