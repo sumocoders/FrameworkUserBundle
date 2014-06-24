@@ -150,4 +150,68 @@ class DefaultController extends Controller
             )
         );
     }
+
+    /**
+     * Unblock a user
+     *
+     * @Route("/unblock/{id}", requirements={"id"= "\d+"})
+     * @Method({"POST"})
+     * @Template()
+     *
+     * @param Request $request
+     * @return array
+     */
+    public function unblockAction(Request $request)
+    {
+        /** @var \Symfony\Component\Form\Extension\Csrf\CsrfProvider\CsrfTokenManagerAdapter $csrfProvider */
+        $csrfProvider = $this->get('form.csrf_provider');
+        /** @var \Symfony\Component\HttpFoundation\Session\Session $session */
+        $session = $this->get('session');
+        /** @var \Symfony\Bundle\FrameworkBundle\Translation\Translator $translator */
+        $translator = $this->get('translator');
+
+        $token = $request->get('token');
+        $id = (int) $request->get('id');
+
+        // validate our token
+        if (!$csrfProvider->isCsrfTokenValid('block_unblock', $token)) {
+            $session->getFlashBag()->add(
+                'error',
+                $translator->trans('forms.errors.invalidToken')
+            );
+
+            return $this->redirect(
+                $this->generateUrl(
+                    'sumocoders_frameworkuser_default_edit',
+                    array('id' => $id)
+                )
+            );
+        }
+
+        /** @var \SumoCoders\FrameworkUserBundle\Model\FrameworkUserManager $userManager */
+        $userManager = $this->container->get('fos_user.user_manager');
+        /** @var \SumoCoders\FrameworkUserBundle\Entity\User $user */
+        $user = $userManager->findUserBy(array('id' => $id));
+
+        // validate the user
+        if (!$user) {
+            throw new NotFoundHttpException(
+                $translator->trans('core.errors.notFound')
+            );
+        }
+
+        $user->setEnabled(true);
+        $userManager->updateUser($user);
+
+        $session->getFlashBag()->add(
+            'success',
+            $translator->trans('user.flash.success.unblocked', array('entity' => $user->getUsername()))
+        );
+
+        return $this->redirect(
+            $this->generateUrl(
+                'sumocoders_frameworkuser_default_index'
+            )
+        );
+    }
 }

@@ -62,6 +62,10 @@
         <source>user.flash.success.blocked</source>
         <target>The user entity was blocked successfully.</target>
       </trans-unit>
+      <trans-unit id="ddb8f2197cb5c43f5e5bf4043e5a32a4285d0e30" resname="user.flash.success.unblocked">
+        <source>user.flash.success.unblocked</source>
+        <target>The user entity was unblocked successfully.</target>
+      </trans-unit>
       <trans-unit id="f02a277049ff0fa94e1639e75c07d17f04e88ac3" resname="user.header.title.add">
         <source>user.header.title.add</source>
         <target>add a new user</target>
@@ -81,6 +85,10 @@
       <trans-unit id="950de5d9bfb61f0221e2192eb5881f4753c22f5d" resname="forms.editUser.buttons.block">
         <source>forms.editUser.buttons.block</source>
         <target>block</target>
+      </trans-unit>
+      <trans-unit id="950de5d9bfb61f0221e2192eb5881f4753c22f5e" resname="forms.editUser.buttons.unblock">
+        <source>forms.editUser.buttons.unblock</source>
+        <target>unblock</target>
       </trans-unit>
       <trans-unit id="18cbaa7a212a4ebb5aa2e50de42ed7d0209e4933" resname="dialogs.messages.confirmBlock">
         <source>dialogs.messages.confirmBlock</source>
