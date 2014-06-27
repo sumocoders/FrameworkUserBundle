@@ -5,6 +5,14 @@ services:
       - @service_container
     tags:
       - { name: kernel.event_listener, event: search.search, method: onSearch }
+  framework_user.listener.menu_listener:
+    class: SumoCoders\FrameworkUserBundle\EventListener\MenuListener
+    arguments:
+      - @service_container
+    calls:
+      - [setSecurityContext, ["@security.context"]]
+    tags:
+      - { name: kernel.event_listener, event: framework_core.configure_menu, method: onConfigureMenu }
   custom_user_manager:
     class: SumoCoders\FrameworkUserBundle\Model\FrameworkUserManager
     arguments:

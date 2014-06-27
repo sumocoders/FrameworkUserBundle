@@ -102,6 +102,14 @@
         <source>dialogs.messages.confirmUnblock</source>
         <target>Are you sure you want to unblock entity?</target>
       </trans-unit>
+      <trans-unit id="18cbaa7a212a4ebb5aa2e50de42ed7d0209e4935" resname="menu.users.settings">
+        <source>menu.users.settings</source>
+        <target>settings</target>
+      </trans-unit>
+      <trans-unit id="18cbaa7a212a4ebb5aa2e50de42ed7d0209e4936" resname="menu.users.logout">
+        <source>menu.users.logout</source>
+        <target>logout</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
