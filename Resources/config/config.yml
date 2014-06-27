@@ -1,5 +1,5 @@
 services:
-  kernel.listener.search_listener:
+  framework_user.listener.search_listener:
     class: SumoCoders\FrameworkUserBundle\EventListener\SearchListener
     arguments:
       - @service_container
