@@ -14,15 +14,15 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
-class DefaultController extends Controller
+class UserController extends Controller
 {
     /**
      * Show an overview of all the users
      *
-     * @Route("/overview")
+     * @Route("/list")
      * @Template()
      */
-    public function indexAction()
+    public function listAction()
     {
         /** @var $userManager \SumoCoders\FrameworkUserBundle\Model\FrameworkUserManager */
         $userManager = $this->container->get('fos_user.user_manager');
@@ -94,7 +94,7 @@ class DefaultController extends Controller
 
             return $this->redirect(
                 $this->generateUrl(
-                    'sumocoders_frameworkuser_default_index'
+                    'sumocoders_frameworkuser_user_list'
                 )
             );
         }
@@ -107,7 +107,7 @@ class DefaultController extends Controller
     /**
      * Edit a user
      *
-     * @Route("/edit/{id}", requirements={"id"= "\d+"})
+     * @Route("/edit/{username}", requirements={"id"= "\d+"})
      * @Template()
      *
      * @param Request $request
@@ -122,12 +122,12 @@ class DefaultController extends Controller
         /** @var \Symfony\Bundle\FrameworkBundle\Translation\Translator $translator */
         $translator = $this->get('translator');
 
-        $id = (int) $request->get('id');
+        $username = (string) $request->get('username');
 
         /** @var \SumoCoders\FrameworkUserBundle\Model\FrameworkUserManager $userManager */
         $userManager = $this->container->get('fos_user.user_manager');
         /** @var \SumoCoders\FrameworkUserBundle\Entity\User $user */
-        $user = $userManager->findUserBy(array('id' => $id));
+        $user = $userManager->findUserByUsername($username);
         /** @var \SumoCoders\FrameworkUserBundle\Entity\User $currentUser */
         $currentUser = $this->get('security.context')->getToken()->getUser();
 
@@ -177,7 +177,7 @@ class DefaultController extends Controller
 
             return $this->redirect(
                 $this->generateUrl(
-                    'sumocoders_frameworkuser_default_index'
+                    'sumocoders_frameworkuser_user_list'
                 )
             );
         }
@@ -195,7 +195,7 @@ class DefaultController extends Controller
      * We won't delete users, as users can/will be linked through other stuff
      * in our application.
      *
-     * @Route("/block/{id}", requirements={"id"= "\d+"})
+     * @Route("/block/{username}")
      * @Method({"POST"})
      * @Template()
      *
@@ -210,7 +210,7 @@ class DefaultController extends Controller
     /**
      * Unblock a user
      *
-     * @Route("/unblock/{id}", requirements={"id"= "\d+"})
+     * @Route("/unblock/{username}")
      * @Method({"POST"})
      * @Template()
      *
@@ -238,7 +238,7 @@ class DefaultController extends Controller
         $translator = $this->get('translator');
 
         $token = $request->get('token');
-        $id = (int) $request->get('id');
+        $username = $request->get('username');
 
         // validate our token
         if (!$csrfProvider->isCsrfTokenValid('block_unblock', $token)) {
@@ -249,8 +249,8 @@ class DefaultController extends Controller
 
             return $this->redirect(
                 $this->generateUrl(
-                    'sumocoders_frameworkuser_default_edit',
-                    array('id' => $id)
+                    'sumocoders_frameworkuser_user_edit',
+                    array('username' => $username)
                 )
             );
         }
@@ -258,7 +258,7 @@ class DefaultController extends Controller
         /** @var \SumoCoders\FrameworkUserBundle\Model\FrameworkUserManager $userManager */
         $userManager = $this->container->get('fos_user.user_manager');
         /** @var \SumoCoders\FrameworkUserBundle\Entity\User $user */
-        $user = $userManager->findUserBy(array('id' => $id));
+        $user = $userManager->findUserByUsername($username);
 
         // validate the user
         if (!$user) {
@@ -285,7 +285,7 @@ class DefaultController extends Controller
 
         return $this->redirect(
             $this->generateUrl(
-                'sumocoders_frameworkuser_default_index'
+                'sumocoders_frameworkuser_user_list'
             )
         );
     }

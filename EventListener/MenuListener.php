@@ -30,9 +30,9 @@ class MenuListener extends DefaultMenuListener
             $menuItem->addChild(
                 'menu.users.settings',
                 array(
-                    'route' => 'sumocoders_frameworkuser_default_edit',
+                    'route' => 'sumocoders_frameworkuser_user_edit',
                     'routeParameters' => array(
-                        'id' => $user->getId(),
+                        'username' => $user->getUsername(),
                     ),
                 )
             );

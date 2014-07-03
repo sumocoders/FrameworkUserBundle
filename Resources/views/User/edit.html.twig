@@ -9,7 +9,7 @@
 {% block header_navigation %}
     <ul>
         <li>
-            <a class="iconList" href="{{ path('sumocoders_frameworkuser_default_index') }}">{{ 'header.navigation.actions.overview'|trans|capitalize }}</a>
+            <a class="iconList" href="{{ path('sumocoders_frameworkuser_user_list') }}">{{ 'header.navigation.actions.overview'|trans|capitalize }}</a>
         </li>
     </ul>
 {% endblock %}
@@ -24,20 +24,20 @@
             <input type="submit" class="btn btn-primary" value="{{ 'forms.general.buttons.edit'|trans|capitalize }}" />
 
                 {% if user.enabled %}
-                    <a href="{{ path('sumocoders_frameworkuser_default_block', {'id': user.id}) }}"
-                            class="btn btn-danger confirmPostForm"
-                            data-field-token="{{ token }}"
-                            data-message="{{ 'dialogs.messages.confirmBlock'|trans({'entity' : user.username }) }}"
-                            >
+                    <a href="{{ path('sumocoders_frameworkuser_user_block', {'username': user.username}) }}"
+                        class="btn btn-danger confirmPostForm"
+                        data-field-token="{{ token }}"
+                        data-message="{{ 'dialogs.messages.confirmBlock'|trans({'entity' : user.username }) }}"
+                    >
                         {{ icon('remove') }}
                         {{ 'forms.editUser.buttons.block'|trans|capitalize }}
                     </a>
                 {% else %}
-                    <a href="{{ path('sumocoders_frameworkuser_default_unblock', {'id': user.id}) }}"
-                            class="btn confirmPostForm"
-                            data-field-token="{{ token }}"
-                            data-message="{{ 'dialogs.messages.confirmUnblock'|trans({'entity' : user.username }) }}"
-                            >
+                    <a href="{{ path('sumocoders_frameworkuser_user_unblock', {'username': user.username}) }}"
+                        class="btn confirmPostForm"
+                        data-field-token="{{ token }}"
+                        data-message="{{ 'dialogs.messages.confirmUnblock'|trans({'entity' : user.username }) }}"
+                    >
                         {{ icon('ok') }}
                         {{ 'forms.editUser.buttons.unblock'|trans|capitalize }}
                     </a>

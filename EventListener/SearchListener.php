@@ -54,7 +54,7 @@ class SearchListener implements ContainerAwareInterface
                     'users',
                     $user->getUsername(),
                     $router->generate(
-                        'sumocoders_frameworkuser_default_edit',
+                        'sumocoders_frameworkuser_user_edit',
                         array('id' => $user->getId())
                     )
                 );
