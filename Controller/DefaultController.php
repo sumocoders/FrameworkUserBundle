@@ -89,7 +89,7 @@ class DefaultController extends Controller
 
                 $event = new \SumoCoders\FrameworkSearchBundle\Event\IndexUpdateEvent();
                 $event->setObjects($searchIndexItems);
-                $this->get('event_dispatcher')->dispatch('search.index.update', $event);
+                $this->get('event_dispatcher')->dispatch('framework_search.index_update', $event);
             }
 
             return $this->redirect(
@@ -167,7 +167,7 @@ class DefaultController extends Controller
 
                 $event = new \SumoCoders\FrameworkSearchBundle\Event\IndexUpdateEvent();
                 $event->setObjects($searchIndexItems);
-                $this->get('event_dispatcher')->dispatch('search.index.update', $event);
+                $this->get('event_dispatcher')->dispatch('framework_search.index_update', $event);
             }
 
             $session->getFlashBag()->add(

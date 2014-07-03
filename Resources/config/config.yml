@@ -4,7 +4,7 @@ services:
     arguments:
       - @service_container
     tags:
-      - { name: kernel.event_listener, event: search.search, method: onSearch }
+      - { name: kernel.event_listener, event: framework_search.search, method: onSearch }
   framework_user.listener.menu_listener:
     class: SumoCoders\FrameworkUserBundle\EventListener\MenuListener
     arguments:
