@@ -11,16 +11,6 @@
     }
   ],
   "minimum-stability": "dev",
-  "repositories": [
-    {
-      "type":"vcs",
-      "url":"git@git.sumocoders.be:tijs/frameworkerrorbundle.git"
-    },
-    {
-      "type":"vcs",
-      "url":"git@git.sumocoders.be:tijs/frameworkcorebundle.git"
-    }
-  ],
   "require": {
     "php": ">=5.3.3",
     "friendsofsymfony/user-bundle": "~2.0@dev",
