@@ -7,8 +7,6 @@ services:
       - { name: kernel.event_listener, event: framework_search.search, method: onSearch }
   framework_user.listener.menu_listener:
     class: SumoCoders\FrameworkUserBundle\EventListener\MenuListener
-    arguments:
-      - @service_container
     calls:
       - [setSecurityContext, ["@security.context"]]
     tags:
