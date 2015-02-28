@@ -56,11 +56,11 @@
       </trans-unit>
       <trans-unit id="ddb8f2197cb5c43f5e5bf4043e5a32a4285d0e3e" resname="user.flash.success.add">
         <source>user.flash.success.add</source>
-        <target>The user %username% was added successfully.</target>
+        <target>The user entity was added successfully.</target>
       </trans-unit>
         <trans-unit id="ddb8f2197cb5c43f5e5bf4043e5a32a4285d0e3d" resname="user.flash.success.edit">
             <source>user.flash.success.edit</source>
-            <target>The user %username% was edited successfully.</target>
+            <target>The user entity was edited successfully.</target>
         </trans-unit>
       <trans-unit id="ddb8f2197cb5c43f5e5bf4043e5a32a4285d0e3f" resname="user.flash.success.blocked">
         <source>user.flash.success.blocked</source>
@@ -76,7 +76,7 @@
       </trans-unit>
       <trans-unit id="698649f5cdddbaa6efb62cde292f16e2d337d9f2" resname="user.header.title.edit">
         <source>user.header.title.edit</source>
-        <target>edit %entity%</target>
+        <target>edit entity</target>
       </trans-unit>
       <trans-unit id="a8edd7d883e67e2bbd4553b15d94c47d75997a66" resname="user.header.title.index">
         <source>user.header.title.index</source>

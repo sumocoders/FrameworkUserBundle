@@ -74,7 +74,7 @@ class UserController extends Controller
 
             $session->getFlashBag()->add(
                 'success',
-                $translator->trans('user.flash.success.add', array('username' => $user->getUsername()))
+                $translator->trans('user.flash.success.add', array('entity' => $user->getUsername()))
             );
 
             if (array_key_exists(
@@ -175,7 +175,7 @@ class UserController extends Controller
 
             $session->getFlashBag()->add(
                 'success',
-                $translator->trans('user.flash.success.edit', array('username' => $user->getUsername()))
+                $translator->trans('user.flash.success.edit', array('entity' => $user->getUsername()))
             );
 
             return $this->redirect(
