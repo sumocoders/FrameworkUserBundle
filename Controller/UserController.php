@@ -20,6 +20,7 @@ class UserController extends Controller
      * Show an overview of all the users
      *
      * @Route("/")
+     * @Method({"GET"})
      * @Template()
      */
     public function indexAction()
@@ -44,6 +45,7 @@ class UserController extends Controller
      * Add a user
      *
      * @Route("/new")
+     * @Method({"GET|POST"})
      * @Template()
      *
      * @param Request $request
@@ -108,6 +110,7 @@ class UserController extends Controller
      * Edit a user
      *
      * @Route("/{id}/edit", requirements={"id"= "\d+"})
+     * @Method({"GET|POST"})
      * @Template()
      *
      * @param Request $request
