@@ -2,7 +2,7 @@
 
 {% block header_title %}
     <h2>
-        {{ 'header.title.edit'|trans({'%entity%' : user.username })|capitalize }}
+        {{ 'header.title.edit'|trans({'%username%' : user.username })|capitalize }}
     </h2>
 {% endblock %}
 
@@ -27,7 +27,7 @@
                     <a href="{{ path('sumocoders_frameworkuser_user_block', {'id': user.id}) }}"
                         class="btn btn-danger confirmPostForm"
                         data-field-token="{{ token }}"
-                        data-message="{{ 'dialogs.messages.confirmBlock'|trans({'entity' : user.username }) }}"
+                        data-message="{{ 'dialogs.messages.confirmBlock'|trans({'%username%' : user.username }) }}"
                     >
                         {{ icon('remove') }}
                         {{ 'forms.editUser.buttons.block'|trans|capitalize }}
@@ -36,7 +36,7 @@
                     <a href="{{ path('sumocoders_frameworkuser_user_unblock', {'id': user.id}) }}"
                         class="btn confirmPostForm"
                         data-field-token="{{ token }}"
-                        data-message="{{ 'dialogs.messages.confirmUnblock'|trans({'entity' : user.username }) }}"
+                        data-message="{{ 'dialogs.messages.confirmUnblock'|trans({'%username%' : user.username }) }}"
                     >
                         {{ icon('ok') }}
                         {{ 'forms.editUser.buttons.unblock'|trans|capitalize }}
