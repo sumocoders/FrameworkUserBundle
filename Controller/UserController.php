@@ -114,9 +114,10 @@ class UserController extends Controller
      * @Template()
      *
      * @param Request $request
+     * @param int     $id
      * @return array
      */
-    public function editAction(Request $request)
+    public function editAction(Request $request, $id)
     {
         /** @var \Symfony\Component\Form\Extension\Csrf\CsrfProvider\CsrfTokenManagerAdapter $csrfProvider */
         $csrfProvider = $this->get('form.csrf_provider');
@@ -124,8 +125,6 @@ class UserController extends Controller
         $session = $this->get('session');
         /** @var \Symfony\Bundle\FrameworkBundle\Translation\Translator $translator */
         $translator = $this->get('translator');
-
-        $id = (string) $request->get('id');
 
         /** @var \SumoCoders\FrameworkUserBundle\Model\FrameworkUserManager $userManager */
         $userManager = $this->container->get('fos_user.user_manager');
@@ -203,11 +202,12 @@ class UserController extends Controller
      * @Template()
      *
      * @param Request $request
+     * @param int     $id
      * @return array
      */
-    public function blockAction(Request $request)
+    public function blockAction(Request $request, $id)
     {
-        return $this->handleBlockUnBlock('block', $request);
+        return $this->handleBlockUnBlock('block', $request, $id);
     }
 
     /**
@@ -218,20 +218,22 @@ class UserController extends Controller
      * @Template()
      *
      * @param Request $request
+     * @param int     $id
      * @return array
      */
-    public function unblockAction(Request $request)
+    public function unblockAction(Request $request, $id)
     {
-        return $this->handleBlockUnBlock('unblock', $request);
+        return $this->handleBlockUnBlock('unblock', $request, $id);
     }
 
     /**
      * @param string  $type
      * @param Request $request
+     * @param int     $id
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      */
-    private function handleBlockUnBlock($type, Request $request)
+    private function handleBlockUnBlock($type, Request $request, $id)
     {
         /** @var \Symfony\Component\Form\Extension\Csrf\CsrfProvider\CsrfTokenManagerAdapter $csrfProvider */
         $csrfProvider = $this->get('form.csrf_provider');
@@ -241,7 +243,6 @@ class UserController extends Controller
         $translator = $this->get('translator');
 
         $token = $request->get('token');
-        $id = $request->get('id');
 
         // validate our token
         if (!$csrfProvider->isCsrfTokenValid('block_unblock', $token)) {
