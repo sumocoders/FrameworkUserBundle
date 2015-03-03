@@ -32,7 +32,7 @@ class MenuListener extends DefaultMenuListener
                 array(
                     'route' => 'sumocoders_frameworkuser_user_edit',
                     'routeParameters' => array(
-                        'username' => $user->getUsername(),
+                        'id' => $user->getId(),
                     ),
                 )
             );

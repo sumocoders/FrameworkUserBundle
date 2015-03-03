@@ -19,10 +19,11 @@ class UserController extends Controller
     /**
      * Show an overview of all the users
      *
-     * @Route("/list")
+     * @Route("/")
+     * @Method({"GET"})
      * @Template()
      */
-    public function listAction()
+    public function indexAction()
     {
         /** @var $userManager \SumoCoders\FrameworkUserBundle\Model\FrameworkUserManager */
         $userManager = $this->container->get('fos_user.user_manager');
@@ -43,13 +44,14 @@ class UserController extends Controller
     /**
      * Add a user
      *
-     * @Route("/add")
+     * @Route("/new")
+     * @Method({"GET|POST"})
      * @Template()
      *
      * @param Request $request
      * @return array
      */
-    public function addAction(Request $request)
+    public function newAction(Request $request)
     {
         $form = $this->createForm(
             new UserType('\SumoCoders\FrameworkUserBundle\Entity\User')
@@ -72,7 +74,7 @@ class UserController extends Controller
 
             $session->getFlashBag()->add(
                 'success',
-                $translator->trans('user.flash.success.add', array('username' => $user->getUsername()))
+                $translator->trans('user.flash.success.add', array('%username%' => $user->getUsername()))
             );
 
             if (array_key_exists(
@@ -94,7 +96,7 @@ class UserController extends Controller
 
             return $this->redirect(
                 $this->generateUrl(
-                    'sumocoders_frameworkuser_user_list'
+                    'sumocoders_frameworkuser_user_index'
                 )
             );
         }
@@ -107,13 +109,15 @@ class UserController extends Controller
     /**
      * Edit a user
      *
-     * @Route("/edit/{username}", requirements={"id"= "\d+"})
+     * @Route("/{id}/edit", requirements={"id"= "\d+"})
+     * @Method({"GET|POST"})
      * @Template()
      *
      * @param Request $request
+     * @param int     $id
      * @return array
      */
-    public function editAction(Request $request)
+    public function editAction(Request $request, $id)
     {
         /** @var \Symfony\Component\Form\Extension\Csrf\CsrfProvider\CsrfTokenManagerAdapter $csrfProvider */
         $csrfProvider = $this->get('form.csrf_provider');
@@ -122,12 +126,10 @@ class UserController extends Controller
         /** @var \Symfony\Bundle\FrameworkBundle\Translation\Translator $translator */
         $translator = $this->get('translator');
 
-        $username = (string) $request->get('username');
-
         /** @var \SumoCoders\FrameworkUserBundle\Model\FrameworkUserManager $userManager */
         $userManager = $this->container->get('fos_user.user_manager');
         /** @var \SumoCoders\FrameworkUserBundle\Entity\User $user */
-        $user = $userManager->findUserByUsername($username);
+        $user = $userManager->findUserBy(array('id' => $id));
         /** @var \SumoCoders\FrameworkUserBundle\Entity\User $currentUser */
         $currentUser = $this->get('security.context')->getToken()->getUser();
 
@@ -172,12 +174,12 @@ class UserController extends Controller
 
             $session->getFlashBag()->add(
                 'success',
-                $translator->trans('user.flash.success.edit', array('username' => $user->getUsername()))
+                $translator->trans('user.flash.success.edit', array('%username%' => $user->getUsername()))
             );
 
             return $this->redirect(
                 $this->generateUrl(
-                    'sumocoders_frameworkuser_user_list'
+                    'sumocoders_frameworkuser_user_index'
                 )
             );
         }
@@ -195,40 +197,43 @@ class UserController extends Controller
      * We won't delete users, as users can/will be linked through other stuff
      * in our application.
      *
-     * @Route("/block/{username}")
+     * @Route("/{id}/block", requirements={"id"= "\d+"})
      * @Method({"POST"})
      * @Template()
      *
      * @param Request $request
+     * @param int     $id
      * @return array
      */
-    public function blockAction(Request $request)
+    public function blockAction(Request $request, $id)
     {
-        return $this->handleBlockUnBlock('block', $request);
+        return $this->handleBlockUnBlock('block', $request, $id);
     }
 
     /**
      * Unblock a user
      *
-     * @Route("/unblock/{username}")
+     * @Route("/{id}/unblock", requirements={"id"= "\d+"})
      * @Method({"POST"})
      * @Template()
      *
      * @param Request $request
+     * @param int     $id
      * @return array
      */
-    public function unblockAction(Request $request)
+    public function unblockAction(Request $request, $id)
     {
-        return $this->handleBlockUnBlock('unblock', $request);
+        return $this->handleBlockUnBlock('unblock', $request, $id);
     }
 
     /**
      * @param string  $type
      * @param Request $request
+     * @param int     $id
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      */
-    private function handleBlockUnBlock($type, Request $request)
+    private function handleBlockUnBlock($type, Request $request, $id)
     {
         /** @var \Symfony\Component\Form\Extension\Csrf\CsrfProvider\CsrfTokenManagerAdapter $csrfProvider */
         $csrfProvider = $this->get('form.csrf_provider');
@@ -238,7 +243,6 @@ class UserController extends Controller
         $translator = $this->get('translator');
 
         $token = $request->get('token');
-        $username = $request->get('username');
 
         // validate our token
         if (!$csrfProvider->isCsrfTokenValid('block_unblock', $token)) {
@@ -250,7 +254,7 @@ class UserController extends Controller
             return $this->redirect(
                 $this->generateUrl(
                     'sumocoders_frameworkuser_user_edit',
-                    array('username' => $username)
+                    array('id' => $id)
                 )
             );
         }
@@ -258,7 +262,7 @@ class UserController extends Controller
         /** @var \SumoCoders\FrameworkUserBundle\Model\FrameworkUserManager $userManager */
         $userManager = $this->container->get('fos_user.user_manager');
         /** @var \SumoCoders\FrameworkUserBundle\Entity\User $user */
-        $user = $userManager->findUserByUsername($username);
+        $user = $userManager->findUserBy(array('id' => $id));
 
         // validate the user
         if (!$user) {
@@ -280,12 +284,12 @@ class UserController extends Controller
 
         $session->getFlashBag()->add(
             'success',
-            $translator->trans($message, array('entity' => $user->getUsername()))
+            $translator->trans($message, array('%username%' => $user->getUsername()))
         );
 
         return $this->redirect(
             $this->generateUrl(
-                'sumocoders_frameworkuser_user_list'
+                'sumocoders_frameworkuser_user_index'
             )
         );
     }

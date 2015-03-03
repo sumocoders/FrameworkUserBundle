@@ -40,7 +40,7 @@
       </trans-unit>
       <trans-unit id="89984afe2d8b76679eb07a21b2a99b1a8d4a15b7" resname="header.title.edit">
         <source>header.title.edit</source>
-        <target>edit %entity%</target>
+        <target>edit %username%</target>
       </trans-unit>
       <trans-unit id="6ce6dda24c9c518f1bfa6cb3267a5218a6cb792b" resname="header.title.login">
         <source>header.title.login</source>
@@ -56,7 +56,7 @@
       </trans-unit>
       <trans-unit id="ddb8f2197cb5c43f5e5bf4043e5a32a4285d0e3e" resname="user.flash.success.add">
         <source>user.flash.success.add</source>
-        <target>The user %username% was added successfully.</target>
+        <target>The user %username was added successfully.</target>
       </trans-unit>
         <trans-unit id="ddb8f2197cb5c43f5e5bf4043e5a32a4285d0e3d" resname="user.flash.success.edit">
             <source>user.flash.success.edit</source>
@@ -64,11 +64,11 @@
         </trans-unit>
       <trans-unit id="ddb8f2197cb5c43f5e5bf4043e5a32a4285d0e3f" resname="user.flash.success.blocked">
         <source>user.flash.success.blocked</source>
-        <target>The user entity was blocked successfully.</target>
+        <target>The user %username% was blocked successfully.</target>
       </trans-unit>
       <trans-unit id="ddb8f2197cb5c43f5e5bf4043e5a32a4285d0e30" resname="user.flash.success.unblocked">
         <source>user.flash.success.unblocked</source>
-        <target>The user entity was unblocked successfully.</target>
+        <target>The user %username% was unblocked successfully.</target>
       </trans-unit>
       <trans-unit id="f02a277049ff0fa94e1639e75c07d17f04e88ac3" resname="user.header.title.add">
         <source>user.header.title.add</source>
@@ -76,7 +76,7 @@
       </trans-unit>
       <trans-unit id="698649f5cdddbaa6efb62cde292f16e2d337d9f2" resname="user.header.title.edit">
         <source>user.header.title.edit</source>
-        <target>edit %entity%</target>
+        <target>edit %username%</target>
       </trans-unit>
       <trans-unit id="a8edd7d883e67e2bbd4553b15d94c47d75997a66" resname="user.header.title.index">
         <source>user.header.title.index</source>
@@ -96,11 +96,11 @@
       </trans-unit>
       <trans-unit id="18cbaa7a212a4ebb5aa2e50de42ed7d0209e4933" resname="dialogs.messages.confirmBlock">
         <source>dialogs.messages.confirmBlock</source>
-        <target>Are you sure you want to block entity?</target>
+        <target>Are you sure you want to block %username%?</target>
       </trans-unit>
       <trans-unit id="18cbaa7a212a4ebb5aa2e50de42ed7d0209e4934" resname="dialogs.messages.confirmUnblock">
         <source>dialogs.messages.confirmUnblock</source>
-        <target>Are you sure you want to unblock entity?</target>
+        <target>Are you sure you want to unblock %username%?</target>
       </trans-unit>
       <trans-unit id="18cbaa7a212a4ebb5aa2e50de42ed7d0209e4935" resname="menu.users.settings">
         <source>menu.users.settings</source>
