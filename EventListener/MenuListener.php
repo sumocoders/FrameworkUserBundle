@@ -10,12 +10,12 @@ class MenuListener extends DefaultMenuListener
     public function onConfigureMenu(ConfigureMenuEvent $event)
     {
         /** @var \SumoCoders\FrameworkUserBundle\Entity\User $user */
-        $user = $this->getSecurityContext()->getToken()->getUser();
+        $user = $this->getSecurityTokenStorage()->getToken()->getUser();
         $menu = $event->getMenu();
 
         if ($user) {
             $menuItem = $event->getFactory()->createItem(
-                'menu.users.users',
+                'menu.users.user',
                 array(
                     'uri' => '#',
                     'label' => $user->getUsername(),
