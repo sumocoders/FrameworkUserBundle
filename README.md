@@ -1,5 +1,7 @@
 # SumoCoders FrameworkUserBundle
 
+[![Build Status](https://travis-ci.org/sumocoders/FrameworkUserBundle.svg?branch=master)](https://travis-ci.org/sumocoders/FrameworkUserBundle) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/sumocoders/FrameworkUserBundle/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/sumocoders/FrameworkUserBundle/?branch=master) [![Code Coverage](https://scrutinizer-ci.com/g/sumocoders/FrameworkUserBundle/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/sumocoders/FrameworkUserBundle/?branch=master) [![SensioLabsInsight](https://insight.sensiolabs.com/projects/6469f510-f24e-4511-bd97-893898285554/mini.png)](https://insight.sensiolabs.com/projects/6469f510-f24e-4511-bd97-893898285554)
+
 https://codeclimate.com/github/sumocoders/FrameworkUserBundle/badges
 
 The FrameworkUserBundle will add some functionality related to managing users:
