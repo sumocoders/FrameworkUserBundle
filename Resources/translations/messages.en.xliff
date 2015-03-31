@@ -102,6 +102,10 @@
         <source>dialogs.messages.confirmUnblock</source>
         <target>Are you sure you want to unblock %username%?</target>
       </trans-unit>
+      <trans-unit id="18cbaa7a212a4ebb5aa2e50de42ed7d0209e4937" resname="menu.users.users">
+        <source>menu.users.users</source>
+        <target>users</target>
+      </trans-unit>
       <trans-unit id="18cbaa7a212a4ebb5aa2e50de42ed7d0209e4935" resname="menu.users.settings">
         <source>menu.users.settings</source>
         <target>settings</target>
