@@ -18,6 +18,10 @@
         <source>forms.general.buttons.add</source>
         <target>add</target>
       </trans-unit>
+      <trans-unit resname="forms.general.buttons.edit">
+        <source>forms.general.buttons.edit</source>
+        <target>edit</target>
+      </trans-unit>
       <trans-unit id="67feda55aa56b5ee53940e13613a7fe98982e9ef" resname="forms.login.action.forgotPassword">
         <source>forms.login.action.forgotPassword</source>
         <target>forgot your password?</target>
