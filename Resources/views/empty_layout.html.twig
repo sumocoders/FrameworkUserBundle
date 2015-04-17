@@ -10,7 +10,11 @@
                         {% endblock %}
                     </header>
 
-                    <a href="/" class="logo">{{ fallbacks.get('site_title') }}</a>
+                    <a href="/" class="logo icon-logo-sumocoders hidden-xs">
+                        <span class="sr-only">
+                            {{ fallbacks.get('site_title') }}
+                        </span>
+                    </a>
 
                     {{ include('SumoCodersFrameworkCoreBundle::notifications.html.twig') }}
 
