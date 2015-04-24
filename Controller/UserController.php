@@ -58,6 +58,14 @@ class UserController extends Controller
         );
 
         $form->handleRequest($request);
+        $form->add('roles', 'choice', array(
+            'choices' => $this->getExistingRoles(),
+            'data' => array(),
+            'label' => 'Roles',
+            'expanded' => true,
+            'multiple' => true,
+            'mapped' => true,
+        ));
 
         if ($form->isValid()) {
             /** @var \SumoCoders\FrameworkUserBundle\Model\FrameworkUserManager $userManager */
@@ -148,6 +156,14 @@ class UserController extends Controller
         }
 
         $form = $this->createForm($type, $user);
+        $form->add('roles', 'choice', array(
+            'choices' => $this->getExistingRoles(),
+            'data' => $user->getRoles(),
+            'label' => 'Roles',
+            'expanded' => true,
+            'multiple' => true,
+            'mapped' => true,
+        ));
 
         $form->handleRequest($request);
 
@@ -292,5 +308,22 @@ class UserController extends Controller
                 'sumocoders_frameworkuser_user_index'
             )
         );
+    }
+
+    /**
+     * Fetches all possible roles stated in our role_hierarchy setting
+     *
+     * @return array
+     */
+    protected function getExistingRoles()
+    {
+        $roleHierarchy = $this->container->getParameter('security.role_hierarchy.roles');
+        $roles = array_keys($roleHierarchy);
+
+        foreach ($roles as $role) {
+            $theRoles[$role] = $role;
+        }
+
+        return $theRoles;
     }
 }
