@@ -21,10 +21,13 @@ class MenuListener extends DefaultMenuListener
                     'label' => $user->getUsername(),
                 )
             );
-            $menuItem->setAttribute('id', 'user');
-            $menuItem->setAttribute('icon', 'iconUser');
-            $menuItem->setChildrenAttribute('class', 'subNavigation');
-            $menuItem->setLinkAttribute('class', 'toggleSubNavigation');
+            $menuItem->setAttribute('class', 'dropdown');
+            $menuItem->setAttribute('icon', 'icon icon-angle');
+            $menuItem->setChildrenAttribute('class', 'dropdown-menu');
+            $menuItem->setChildrenAttribute('role', 'menu');
+            $menuItem->setLinkAttribute('class', 'menu-item dropdown-toggle');
+            $menuItem->setLinkAttribute('role', 'button');
+            $menuItem->setLinkAttribute('aria-expanded', 'false');
             $menuItem->setExtra('orderNumber', 1);
 
             $menuItem->addChild(
@@ -42,6 +45,11 @@ class MenuListener extends DefaultMenuListener
                     'route' => 'fos_user_security_logout',
                 )
             );
+
+            // add the sub-menu-item class to all sub-menu-items
+            foreach ($menuItem as $child) {
+                $child->setLinkAttribute('class', 'sub-menu-item');
+            }
 
             $menu->addChild($menuItem);
 

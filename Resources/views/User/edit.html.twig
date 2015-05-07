@@ -7,11 +7,7 @@
 {% endblock %}
 
 {% block header_navigation %}
-    <ul>
-        <li>
-            <a class="icon icon-list" href="{{ path('sumocoders_frameworkuser_user_index') }}">{{ 'header.navigation.actions.overview'|trans|capitalize }}</a>
-        </li>
-    </ul>
+    <a class="btn btn-info" href="{{ path('sumocoders_frameworkuser_user_index') }}">{{ 'header.navigation.actions.overview'|trans|capitalize }}</a>
 {% endblock %}
 
 {% block fos_user_content %}
