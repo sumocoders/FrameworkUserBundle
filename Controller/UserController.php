@@ -56,8 +56,6 @@ class UserController extends Controller
         $form = $this->createForm(
             new UserType('\SumoCoders\FrameworkUserBundle\Entity\User')
         );
-
-        $form->handleRequest($request);
         $form->add('roles', 'choice', array(
             'choices' => $this->getExistingRoles(),
             'data' => array(),
@@ -66,6 +64,8 @@ class UserController extends Controller
             'multiple' => true,
             'mapped' => true,
         ));
+
+        $form->handleRequest($request);
 
         if ($form->isValid()) {
             /** @var \SumoCoders\FrameworkUserBundle\Model\FrameworkUserManager $userManager */
