@@ -13,7 +13,7 @@ class MenuListener extends DefaultMenuListener
         $user = $this->getSecurityTokenStorage()->getToken()->getUser();
         $menu = $event->getMenu();
 
-        if ($user) {
+        if ($this->getSecurityAuthorizationChecker()->isGranted('ROLE_USER')) {
             $menuItem = $event->getFactory()->createItem(
                 'menu.users.user',
                 array(
