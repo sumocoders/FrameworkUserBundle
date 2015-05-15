@@ -45,5 +45,16 @@ class MenuListener extends DefaultMenuListener
 
             $menu->addChild($menuItem);
         }
+
+        if ($this->getSecurityAuthorizationChecker()->isGranted('ROLE_ADMIN')) {
+            $menuItem = $event->getFactory()->createItem(
+                'user.menu.users',
+                array(
+                    'route' => 'sumocoders_frameworkuser_user_index'
+                )
+            );
+
+            $menu->addChild($menuItem);
+        }
     }
 }
