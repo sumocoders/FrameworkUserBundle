@@ -1,0 +1,21 @@
+user:
+    datagrids:
+        headers:
+            username: username
+
+    forms:
+        buttons:
+            block: block
+            unblock: unblock
+
+    header:
+     title:
+         edit: edit %username%
+         index: users
+         new: add user
+
+    menu:
+        current_user: current user
+        logout: logout
+        settings: settings
+        users: users
