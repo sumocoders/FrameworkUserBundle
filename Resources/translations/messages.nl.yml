@@ -1,0 +1,21 @@
+user:
+    datagrids:
+        headers:
+            username: gebruikersnaam
+
+    forms:
+        buttons:
+            block: blokkeer
+            unblock: deblokkeer
+
+    header:
+     title:
+         edit: bewerk %username%
+         index: gebruikers
+         new: gebruiker toevoegen
+
+    menu:
+        current_user: huidige gebruiker
+        logout: afmelden
+        settings: instellingen
+        users: gebruikers

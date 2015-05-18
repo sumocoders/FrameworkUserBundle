@@ -2,7 +2,7 @@
 
 {% block header_title %}
     <h2>
-        {{ 'header.title.edit'|trans({'%username%' : user.username })|capitalize }}
+        {{ 'user.header.title.edit'|trans({'%username%' : user.username })|capitalize }}
     </h2>
 {% endblock %}
 
@@ -21,7 +21,7 @@
 
         <div class="form-group">
             <div class="col-lg-9 col-lg-offset-3">
-            <input type="submit" class="btn btn-primary" value="{{ 'forms.general.buttons.edit'|trans|capitalize }}" />
+            <input type="submit" class="btn btn-primary" value="{{ 'forms.buttons.update'|trans|capitalize }}" />
 
                 {% if user.enabled %}
                     <a href="{{ path('sumocoders_frameworkuser_user_block', {'id': user.id}) }}"
@@ -30,7 +30,7 @@
                         data-message="{{ 'dialogs.messages.confirmBlock'|trans({'%username%' : user.username }) }}"
                     >
                         {{ icon('remove') }}
-                        {{ 'forms.editUser.buttons.block'|trans|capitalize }}
+                        {{ 'user.forms.buttons.block'|trans|capitalize }}
                     </a>
                 {% else %}
                     <a href="{{ path('sumocoders_frameworkuser_user_unblock', {'id': user.id}) }}"
@@ -39,7 +39,7 @@
                         data-message="{{ 'dialogs.messages.confirmUnblock'|trans({'%username%' : user.username }) }}"
                     >
                         {{ icon('ok') }}
-                        {{ 'forms.editUser.buttons.unblock'|trans|capitalize }}
+                        {{ 'user.forms.buttons.unblock'|trans|capitalize }}
                     </a>
                 {% endif %}
             </div>

@@ -1,0 +1,22 @@
+services:
+  framework_user.listener.search_listener:
+    class: SumoCoders\FrameworkUserBundle\EventListener\SearchListener
+    arguments:
+      - @service_container
+    tags:
+      - { name: kernel.event_listener, event: framework_search.search, method: onSearch }
+  framework_user.listener.menu_listener:
+    class: SumoCoders\FrameworkUserBundle\EventListener\MenuListener
+    arguments:
+      - @security.authorization_checker
+      - @security.token_storage
+    tags:
+      - { name: kernel.event_listener, event: framework_core.configure_menu, method: onConfigureMenu }
+  custom_user_manager:
+    class: SumoCoders\FrameworkUserBundle\Model\FrameworkUserManager
+    arguments:
+      - @security.encoder_factory
+      - @fos_user.util.username_canonicalizer
+      - @fos_user.util.email_canonicalizer
+      - @fos_user.entity_manager
+      - SumoCoders\FrameworkUserBundle\Entity\User
