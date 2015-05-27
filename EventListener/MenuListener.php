@@ -13,9 +13,9 @@ class MenuListener extends DefaultMenuListener
         $user = $this->getSecurityTokenStorage()->getToken()->getUser();
         $menu = $event->getMenu();
 
-        if ($user) {
+        if ($this->getSecurityAuthorizationChecker()->isGranted('ROLE_USER')) {
             $menuItem = $event->getFactory()->createItem(
-                'menu.users.user',
+                'user.menu.current_user',
                 array(
                     'uri' => '#',
                     'label' => $user->getUsername(),
@@ -31,7 +31,7 @@ class MenuListener extends DefaultMenuListener
             $menuItem->setExtra('orderNumber', 1);
 
             $menuItem->addChild(
-                'menu.users.settings',
+                'user.menu.settings',
                 array(
                     'route' => 'sumocoders_frameworkuser_user_edit',
                     'routeParameters' => array(
@@ -40,7 +40,7 @@ class MenuListener extends DefaultMenuListener
                 )
             );
             $menuItem->addChild(
-                'menu.users.logout',
+                'user.menu.logout',
                 array(
                     'route' => 'fos_user_security_logout',
                 )
@@ -52,17 +52,17 @@ class MenuListener extends DefaultMenuListener
             }
 
             $menu->addChild($menuItem);
+        }
 
-            if ($user->hasRole('ROLE_SUPER_ADMIN')) {
-                $menuItem = $event->getFactory()->createItem(
-                    'menu.users.users',
-                    array(
-                        'route' => 'sumocoders_frameworkuser_user_index'
-                    )
-                );
+        if ($this->getSecurityAuthorizationChecker()->isGranted('ROLE_ADMIN')) {
+            $menuItem = $event->getFactory()->createItem(
+                'user.menu.users',
+                array(
+                    'route' => 'sumocoders_frameworkuser_user_index'
+                )
+            );
 
-                $menu->addChild($menuItem);
-            }
+            $menu->addChild($menuItem);
         }
     }
 }

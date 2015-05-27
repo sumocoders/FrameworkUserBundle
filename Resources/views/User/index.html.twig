@@ -1,39 +1,40 @@
 {% extends '::base.html.twig' %}
 
 {% block header_title %}
-<h2>
+  <h2>
     {{ 'user.header.title.index'|trans|capitalize }}
-</h2>
+  </h2>
 {% endblock %}
 
 {% block header_navigation %}
-    <a class="btn btn-info" href="{{ path('sumocoders_frameworkuser_user_index') }}">{{ 'header.navigation.actions.overview'|trans|capitalize }}</a>
+  <a class="btn btn-info" href="{{ path('sumocoders_frameworkuser_user_index') }}">{{ 'header.navigation.actions.overview'|trans|capitalize }}</a>
 {% endblock %}
 
 {% block main %}
-<table class="table table-hover">
+
+  <table class="table table-hover">
     <thead>
-        <tr>
-            <th>{{ 'user.table.overview.header.username'|trans|capitalize }}</th>
-            <th></th>
-        </tr>
+      <tr>
+        <th>{{ 'user.datagrids.headers.username'|trans|capitalize }}</th>
+        <th></th>
+      </tr>
     </thead>
     <tbody>
-        {% for article in dgUsers %}
+      {% for article in dgUsers %}
         <tr class="{% if not article.enabled %}striked{% endif %}">
-            <td>{{ article.username }}</td>
-            <td class="action">
-                <a href="{{ path('sumocoders_frameworkuser_user_edit', {'id': article.id}) }}" class="icon icon-edit">
-                            <span class="hide">
-                                {{ 'datagrids.actions.edit'|trans }}
-                            </span>
-                </a>
-            </td>
+          <td>{{ article.username }}</td>
+          <td class="action">
+            <a href="{{ path('sumocoders_frameworkuser_user_edit', {'id': article.id}) }}" class="icon icon-edit">
+              <span class="hide">
+                {{ 'datagrids.actions.edit'|trans }}
+              </span>
+            </a>
+          </td>
         </tr>
-        {% endfor %}
+      {% endfor %}
     </tbody>
-</table>
-{{ knp_pagination_render(dgUsers) }}
+  </table>
+  {{ knp_pagination_render(dgUsers) }}
 
 {% endblock %}
 
