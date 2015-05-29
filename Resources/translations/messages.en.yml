@@ -9,10 +9,13 @@ user:
             unblock: unblock
 
     header:
-     title:
-         edit: edit %username%
-         index: users
-         new: add user
+        title:
+            edit: edit %username%
+            index: users
+            new: add user
+        actions:
+           logout: afmelden
+           settings: instellingen
 
     menu:
         current_user: current user

@@ -9,10 +9,13 @@ user:
             unblock: deblokkeer
 
     header:
-     title:
-         edit: bewerk %username%
-         index: gebruikers
-         new: gebruiker toevoegen
+        title:
+            edit: bewerk %username%
+            index: gebruikers
+            new: gebruiker toevoegen
+        actions:
+            logout: afmelden
+            settings: instellingen
 
     menu:
         current_user: huidige gebruiker
