@@ -1,0 +1,7 @@
+user:
+    user:
+        email: e-mail address
+        username: username
+        plainpassword.first: password
+        plainpassword.second: repeat password
+        roles: roles

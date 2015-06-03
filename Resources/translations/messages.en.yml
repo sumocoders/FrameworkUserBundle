@@ -1,4 +1,11 @@
+ROLE_ADMIN: administrator
+ROLE_SUPER_ADMIN: super administrator
+
 user:
+    breadcrumb:
+        new: add user
+        edit: edit user
+
     datagrids:
         headers:
             username: username
@@ -14,8 +21,9 @@ user:
             index: users
             new: add user
         actions:
-           logout: afmelden
-           settings: instellingen
+            new: add user
+            logout: logout
+            settings: settings
 
     menu:
         current_user: current user

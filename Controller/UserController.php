@@ -53,17 +53,32 @@ class UserController extends Controller
      */
     public function newAction(Request $request)
     {
+        // fix the breadCrumb
+        $this->get('framework.breadcrumb_builder')
+            ->extractItemsBasedOnUri(
+                $this->generateUrl('sumocoders_frameworkuser_user_index'),
+                $request->getLocale()
+            )
+            ->addSimpleItem(
+                'user.breadcrumb.new',
+                $this->generateUrl('sumocoders_frameworkuser_user_new')
+            );
+
         $form = $this->createForm(
             new UserType('\SumoCoders\FrameworkUserBundle\Entity\User')
         );
-        $form->add('roles', 'choice', array(
-            'choices' => $this->getExistingRoles(),
-            'data' => array(),
-            'label' => 'Roles',
-            'expanded' => true,
-            'multiple' => true,
-            'mapped' => true,
-        ));
+        $form->add(
+            'roles',
+            'choice',
+            array(
+                'choices' => $this->getExistingRoles(),
+                'data' => array(),
+                'label' => 'Roles',
+                'expanded' => true,
+                'multiple' => true,
+                'mapped' => true,
+            )
+        );
 
         $form->handleRequest($request);
 
@@ -127,6 +142,20 @@ class UserController extends Controller
      */
     public function editAction(Request $request, $id)
     {
+        // fix the breadCrumb
+        $this->get('framework.breadcrumb_builder')
+            ->extractItemsBasedOnUri(
+                $this->generateUrl('sumocoders_frameworkuser_user_index'),
+                $request->getLocale()
+            )
+            ->addSimpleItem(
+                'user.breadcrumb.edit',
+                $this->generateUrl(
+                    'sumocoders_frameworkuser_user_edit',
+                    array('id' => $id)
+                )
+            );
+
         /** @var \Symfony\Component\Form\Extension\Csrf\CsrfProvider\CsrfTokenManagerAdapter $csrfProvider */
         $csrfProvider = $this->get('form.csrf_provider');
         /** @var \Symfony\Component\HttpFoundation\Session\Session $session */
@@ -156,14 +185,18 @@ class UserController extends Controller
         }
 
         $form = $this->createForm($type, $user);
-        $form->add('roles', 'choice', array(
-            'choices' => $this->getExistingRoles(),
-            'data' => $user->getRoles(),
-            'label' => 'Roles',
-            'expanded' => true,
-            'multiple' => true,
-            'mapped' => true,
-        ));
+        $form->add(
+            'roles',
+            'choice',
+            array(
+                'choices' => $this->getExistingRoles(),
+                'data' => $user->getRoles(),
+                'label' => 'Roles',
+                'expanded' => true,
+                'multiple' => true,
+                'mapped' => true,
+            )
+        );
 
         $form->handleRequest($request);
 
