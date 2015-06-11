@@ -1,3 +1,6 @@
+ROLE_ADMIN: administrator
+ROLE_SUPER_ADMIN: super administrator
+
 user:
     datagrids:
         headers:
@@ -9,10 +12,10 @@ user:
             unblock: unblock
 
     header:
-     title:
-         edit: edit %username%
-         index: users
-         new: add user
+        title:
+            edit: edit %username%
+            index: users
+            new: add user
 
     menu:
         current_user: current user

@@ -1,3 +1,6 @@
+ROLE_ADMIN: beheerder
+ROLE_SUPER_ADMIN: administrator
+
 user:
     datagrids:
         headers:
@@ -9,10 +12,10 @@ user:
             unblock: deblokkeer
 
     header:
-     title:
-         edit: bewerk %username%
-         index: gebruikers
-         new: gebruiker toevoegen
+        title:
+            edit: bewerk %username%
+            index: gebruikers
+            new: gebruiker toevoegen
 
     menu:
         current_user: huidige gebruiker

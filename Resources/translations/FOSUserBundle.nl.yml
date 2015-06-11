@@ -1,0 +1,7 @@
+user:
+    user:
+        email: e-mailadres
+        username: gebruikersnaam
+        plainpassword.first: wachtwoord
+        plainpassword.second: herhaal wachtwoord
+        roles: rollen
