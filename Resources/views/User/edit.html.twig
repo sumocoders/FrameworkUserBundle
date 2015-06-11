@@ -7,38 +7,23 @@
 {% endblock %}
 
 {% block header_navigation %}
-    <a class="btn btn-info" href="{{ path('sumocoders_frameworkuser_user_index') }}">{{ 'header.navigation.actions.overview'|trans|capitalize }}</a>
+    {% if is_granted('ROLE_SUPER_ADMIN') %}
+        <a class="btn btn-info" href="{{ path('sumocoders_frameworkuser_user_index') }}">{{ 'header.navigation.actions.overview'|trans|capitalize }}</a>
+        {{ form_start(form_block_unblock, {'attr': {'class': 'form-inline'}}) }}
+            {{ form_rest(form_block_unblock) }}
+        {{ form_end(form_block_unblock) }}
+    {% endif %}
 {% endblock %}
 
 {% block fos_user_content %}
     {{ form_start(form) }}
-        {{ form_errors(form) }}
-        {{ form_widget(form) }}
+    {{ form_errors(form) }}
+    {{ form_widget(form) }}
 
-        <div class="form-group">
-            <div class="col-lg-9 col-lg-offset-3">
+    <div class="form-group">
+        <div class="col-lg-9 col-lg-offset-3">
             <input type="submit" class="btn btn-primary" value="{{ 'forms.buttons.update'|trans|capitalize }}" />
-
-                {% if user.enabled %}
-                    <a href="{{ path('sumocoders_frameworkuser_user_block', {'id': user.id}) }}"
-                        class="btn btn-danger confirmPostForm"
-                        data-field-token="{{ token }}"
-                        data-message="{{ 'dialogs.messages.confirmBlock'|trans({'%username%' : user.username }) }}"
-                    >
-                        {{ icon('remove') }}
-                        {{ 'user.forms.buttons.block'|trans|capitalize }}
-                    </a>
-                {% else %}
-                    <a href="{{ path('sumocoders_frameworkuser_user_unblock', {'id': user.id}) }}"
-                        class="btn confirmPostForm"
-                        data-field-token="{{ token }}"
-                        data-message="{{ 'dialogs.messages.confirmUnblock'|trans({'%username%' : user.username }) }}"
-                    >
-                        {{ icon('ok') }}
-                        {{ 'user.forms.buttons.unblock'|trans|capitalize }}
-                    </a>
-                {% endif %}
-            </div>
         </div>
+    </div>
     {{ form_end(form) }}
 {% endblock fos_user_content %}

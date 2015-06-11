@@ -10,6 +10,11 @@ user:
         headers:
             username: username
 
+    dialogs:
+      messages:
+        confirmBlock: Are you sure you want to block %entity%?
+        confirmUnblock: Are you sure you want to unblock %entity%?
+
     forms:
         buttons:
             block: block

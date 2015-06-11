@@ -2,6 +2,7 @@
 
 namespace SumoCoders\FrameworkUserBundle\Controller;
 
+use SumoCoders\FrameworkUserBundle\Entity\User;
 use SumoCoders\FrameworkUserBundle\Form\OtherUserType;
 use SumoCoders\FrameworkUserBundle\Form\OwnUserType;
 use SumoCoders\FrameworkUserBundle\Form\UserType;
@@ -94,11 +95,12 @@ class UserController extends Controller
             /** @var \Symfony\Bundle\FrameworkBundle\Translation\Translator $translator */
             $translator = $this->get('translator');
 
-            $session->getFlashBag()->add(
+            $this->addFlash(
                 'success',
                 $translator->trans('user.flash.success.add', array('%username%' => $user->getUsername()))
             );
 
+            // @todo move this in an event!
             if (array_key_exists(
                 'SumoCodersFrameworkSearchBundle',
                 $this->container->getParameter('kernel.bundles')
@@ -232,11 +234,79 @@ class UserController extends Controller
             );
         }
 
+        if ($user->isEnabled()) {
+            $blockUnblockForm = $this->createBlockUnblockForm($user, 'block');
+        } else {
+            $blockUnblockForm = $this->createBlockUnblockForm($user, 'unblock');
+        }
+
         return array(
             'form' => $form->createView(),
             'token' => $csrfProvider->generateCsrfToken('block_unblock'),
             'user' => $user,
+            'form_block_unblock' => $blockUnblockForm->createView(),
         );
+    }
+
+    /**
+     * Creates a form to block a user.
+     *
+     * @param User $user The entity
+     * @return \Symfony\Component\Form\Form The form
+     */
+    private function createBlockUnblockForm(User $user, $action = 'block')
+    {
+        $allowedActions = array(
+            'block',
+            'unblock',
+        );
+
+        if (!in_array($action, $allowedActions)) {
+            throw new \InvalidArgumentException(
+                'Invalid action, possible values are: ' . implode(', ', $allowedActions)
+            );
+        }
+
+        if ('block' === $action) {
+            $route = 'sumocoders_frameworkuser_user_block';
+            $label = 'user.forms.buttons.block';
+            $message = 'user.dialogs.messages.confirmBlock';
+            $class = 'fa fa-remove btn-danger';
+        }
+        if ('unblock' === $action) {
+            $route = 'sumocoders_frameworkuser_user_unblock';
+            $label = 'user.forms.buttons.unblock';
+            $message = 'user.dialogs.messages.confirmUnblock';
+            $class = 'fa fa-check btn-success';
+        }
+
+        return $this->createFormBuilder()
+            ->setAction(
+                $this->generateUrl(
+                    $route,
+                    array(
+                        'id' => $user->getId(),
+                    )
+                )
+            )
+            ->setMethod('POST')
+            ->add(
+                'submit',
+                'submit',
+                array(
+                    'label' => ucfirst($this->get('translator')->trans($label)),
+                    'attr' => array(
+                        'class' => 'confirm ' . $class,
+                        'data-message' => $this->get('translator')->trans(
+                            $message,
+                            array(
+                                '%entity%' => $user,
+                            )
+                        ),
+                    ),
+                )
+            )
+            ->getForm();
     }
 
     /**
@@ -249,13 +319,12 @@ class UserController extends Controller
      * @Method({"POST"})
      * @Template()
      *
-     * @param Request $request
-     * @param int     $id
+     * @param User $user
      * @return array
      */
-    public function blockAction(Request $request, $id)
+    public function blockAction(User $user)
     {
-        return $this->handleBlockUnBlock('block', $request, $id);
+        return $this->handleBlockUnBlock('block', $user);
     }
 
     /**
@@ -265,59 +334,24 @@ class UserController extends Controller
      * @Method({"POST"})
      * @Template()
      *
-     * @param Request $request
-     * @param int     $id
+     * @param User $user
      * @return array
      */
-    public function unblockAction(Request $request, $id)
+    public function unblockAction(User $user)
     {
-        return $this->handleBlockUnBlock('unblock', $request, $id);
+        return $this->handleBlockUnBlock('unblock', $user);
     }
 
     /**
-     * @param string  $type
-     * @param Request $request
-     * @param int     $id
+     * @param string $type
+     * @param User   $user
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      */
-    private function handleBlockUnBlock($type, Request $request, $id)
+    private function handleBlockUnBlock($type, User $user)
     {
-        /** @var \Symfony\Component\Form\Extension\Csrf\CsrfProvider\CsrfTokenManagerAdapter $csrfProvider */
-        $csrfProvider = $this->get('form.csrf_provider');
-        /** @var \Symfony\Component\HttpFoundation\Session\Session $session */
-        $session = $this->get('session');
         /** @var \Symfony\Bundle\FrameworkBundle\Translation\Translator $translator */
         $translator = $this->get('translator');
-
-        $token = $request->get('token');
-
-        // validate our token
-        if (!$csrfProvider->isCsrfTokenValid('block_unblock', $token)) {
-            $session->getFlashBag()->add(
-                'error',
-                $translator->trans('forms.errors.invalidToken')
-            );
-
-            return $this->redirect(
-                $this->generateUrl(
-                    'sumocoders_frameworkuser_user_edit',
-                    array('id' => $id)
-                )
-            );
-        }
-
-        /** @var \SumoCoders\FrameworkUserBundle\Model\FrameworkUserManager $userManager */
-        $userManager = $this->container->get('fos_user.user_manager');
-        /** @var \SumoCoders\FrameworkUserBundle\Entity\User $user */
-        $user = $userManager->findUserBy(array('id' => $id));
-
-        // validate the user
-        if (!$user) {
-            throw new NotFoundHttpException(
-                $translator->trans('core.errors.notFound')
-            );
-        }
 
         if ($type == 'unblock') {
             $enabled = true;
@@ -328,16 +362,19 @@ class UserController extends Controller
         }
 
         $user->setEnabled($enabled);
-        $userManager->updateUser($user);
+        $this->container->get('fos_user.user_manager')->updateUser($user);
 
-        $session->getFlashBag()->add(
+        $this->addFlash(
             'success',
             $translator->trans($message, array('%username%' => $user->getUsername()))
         );
 
         return $this->redirect(
             $this->generateUrl(
-                'sumocoders_frameworkuser_user_index'
+                'sumocoders_frameworkuser_user_edit',
+                array(
+                    'id' => $user->getId(),
+                )
             )
         );
     }
