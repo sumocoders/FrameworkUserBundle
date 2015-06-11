@@ -3,35 +3,36 @@
 
 {% block header_title %}
     <h2>
-        {{ 'header.title.request'|trans({},'messages')|capitalize }}
+        {{ 'user.header.title.request'|trans({},'messages')|capitalize }}
     </h2>
 {% endblock %}
 
 {% block fos_user_content %}
     <form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request">
         {% if invalid_username is defined %}
-            <div class="alert alert-error">
+            <div class="alert alert-danger">
                 {{ 'resetting.request.invalid_username'|trans({'%username%': invalid_username}) }}
             </div>
         {% endif %}
 
         <fieldset>
-            <div class="control-group">
+            <div class="form-group">
                 <label class="control-label" for="username">
-                    {{ 'resetting.request.username'|trans }}<abbr title="{{ 'forms.errors.fieldIsRequired'|trans({},'messages')|capitalize }}">*</abbr>
+                    {{ 'resetting.request.username'|trans }}<abbr title="{{ 'forms.labels.required'|trans({},'messages')|capitalize }}">*</abbr>
                 </label>
 
-                <div class="controls input-prepend">
-                    <div class="add-on username"></div>
-                    <input id="username" name="username" type="text" class="inputText" required />
+                <div class="input-group">
+                    <div class="input-group-addon username icon icon-user"></div>
+                    <input id="username" name="username" type="text" class="form-control input-lg" required />
                 </div>
             </div>
-
-            <button type="submit" id="submit" name="_submit" class="btn btn-primary btn-block">
-                {{ 'resetting.request.submit'|trans }}
-                <i class="icon iconArrowWhiteRight"></i>
-            </button>
+            <div class="row">
+                <div class="col-md-6 pull-right">
+                    <button type="submit" id="submit" name="_submit" class="btn btn-success btn-block">
+                        {{ 'resetting.request.submit'|trans }}<i class="icon iconArrowWhiteRight"></i>
+                    </button>
+                </div>
+            </div>
         </fieldset>
     </form>
-
 {% endblock fos_user_content %}

@@ -13,13 +13,20 @@ user:
     forms:
         buttons:
             block: blokkeer
+            forgotPassword: Wachtwoord vergeten?
             unblock: deblokkeer
 
     header:
         title:
+            checkEmail: bekijk je inbox
             edit: bewerk %username%
             index: gebruikers
+            login: aanmelden
+            passwordAlreadRequested: wachtwoord werd al aangevraagd
+            reset: stel je wachtwoor opnieuw in
+            request: vraag nieuw wachtwoord aan
             new: gebruiker toevoegen
+
         actions:
             new: gebruiker toevoegen
             logout: afmelden

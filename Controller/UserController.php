@@ -73,7 +73,6 @@ class UserController extends Controller
             array(
                 'choices' => $this->getExistingRoles(),
                 'data' => array(),
-                'label' => 'Roles',
                 'expanded' => true,
                 'multiple' => true,
                 'mapped' => true,

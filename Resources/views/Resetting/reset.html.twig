@@ -3,16 +3,43 @@
 
 {% block header_title %}
     <h2>
-        {{ 'header.title.request'|trans({},'messages')|capitalize }}
+        {{ 'user.header.title.reset'|trans({},'messages')|capitalize }}
     </h2>
 {% endblock %}
 
 {% block fos_user_content %}
     <form action="{{ path('fos_user_resetting_reset', {'token': token}) }}" {{ form_enctype(form) }} method="POST" class="fos_user_resetting_reset">
-        {{ form_widget(form) }}
-        <button type="submit" class="btn btn-primary btn-block">
-            {{ 'resetting.reset.submit'|trans }}
-            <i class="icon iconArrowWhiteRight"></i>
-        </button>
+        <fieldset>
+            <div class="form-group">
+                <label class="control-label" for="password">
+                    {{ 'user.user.plainpassword.first'|trans|capitalize }}<abbr title="{{ 'forms.labels.required'|trans({},'messages')|capitalize }}">*</abbr>
+                </label>
+
+                <div class="input-group">
+                    <div class="input-group-addon password icon icon-lock"></div>
+                    {{ form_widget(form.plainPassword.first, {'attr': {'class': 'form-control input-lg'}}) }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label" for="password">
+                    {{ 'user.user.plainpassword.second'|trans|capitalize }}<abbr title="{{ 'forms.labels.required'|trans({},'messages')|capitalize }}">*</abbr>
+                </label>
+
+                <div class="input-group">
+                    <div class="input-group-addon password icon icon-lock"></div>
+                    {{ form_widget(form.plainPassword.second, {'attr': {'class': 'form-control input-lg'}}) }}
+                </div>
+            </div>
+
+            {{ form_rest(form) }}
+            <div class="row">
+                <div class="col-md-6 pull-right">
+                    <button type="submit" class="btn btn-success btn-block">
+                        {{ 'resetting.reset.submit'|trans }}<i class="icon iconArrowWhiteRight"></i>
+                    </button>
+                </div>
+            </div>
+        </fieldset>
     </form>
 {% endblock fos_user_content %}
