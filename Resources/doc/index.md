@@ -1,12 +1,8 @@
 # Getting Started With FrameworkUserBundle
 
-
 ## Installation
 
-    composer require sumocoders/framework-user-bundle:dev-master
-
-**Warning**
-> Replace `dev-master` with a sane thing
+    composer require sumocoders/framework-user-bundle
 
 Enable the bundle in the kernel.
 
