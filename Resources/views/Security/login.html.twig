@@ -25,7 +25,7 @@
 
                 <div class="input-group">
                     <div class="input-group-addon username icon icon-user"></div>
-                    <input value="{{ last_username }}" id="username" name="_username" type="text" class="form-control input-lg" required autofocus />
+                    <input value="{{ last_username }}" id="username" name="_username" type="text" class="form-control input-lg" required />
                 </div>
             </div>
 
@@ -46,15 +46,19 @@
                     {{ 'security.login.remember_me'|trans }}
                 </label>
             </div>
-
-            <button type="submit" id="submit" name="_submit" class="btn btn-lg btn-block">
-                {{ 'security.login.submit'|trans }}<i class="icon iconArrowWhiteRight"></i>
-            </button>
-
-            <div class="forgotPassword">
-                <small>
-                    <a href="{{ path('fos_user_resetting_request') }}">{{ 'forms.login.action.forgotPassword'|trans({},'messages')|capitalize }}</a>
-                </small>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="forgotPassword">
+                        <small>
+                            <a href="{{ path('fos_user_resetting_request') }}">{{ 'forms.login.action.forgotPassword'|trans({},'messages')|capitalize }}</a>
+                        </small>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <button class="btn btn-primary pull-right" type="submit" id="submit" name="_submit">
+                        {{ 'security.login.submit'|trans }}<i class="icon iconArrowWhiteRight"></i>
+                    </button>
+                </div>
             </div>
         </fieldset>
     </form>
