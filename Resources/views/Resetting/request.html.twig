@@ -10,7 +10,7 @@
 {% block fos_user_content %}
     <form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request">
         {% if invalid_username is defined %}
-            <div class="alert alert-error">
+            <div class="alert alert-danger">
                 {{ 'resetting.request.invalid_username'|trans({'%username%': invalid_username}) }}
             </div>
         {% endif %}
