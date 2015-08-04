@@ -5,3 +5,7 @@ user:
         plainpassword.first: wachtwoord
         plainpassword.second: herhaal wachtwoord
         roles: rollen
+
+form:
+    password:
+        confirmation: herhaal wachtwoord

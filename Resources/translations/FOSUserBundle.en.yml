@@ -5,3 +5,7 @@ user:
         plainpassword.first: password
         plainpassword.second: repeat password
         roles: roles
+
+form:
+    password:
+        confirmation: repeat password
