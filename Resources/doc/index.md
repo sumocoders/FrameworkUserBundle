@@ -1,22 +1,8 @@
 # Getting Started With FrameworkUserBundle
 
-
 ## Installation
 
-Add FrameworkSearchBundle as a requirement in your composer.json:
-
-```
-{
-    "require": {
-        "sumocoders/framework-user-bundle": "dev-master"
-    }
-}
-```
-
-**Warning**
-> Replace `dev-master` with a sane thing
-
-Run `composer update`:
+    composer require sumocoders/framework-user-bundle
 
 Enable the bundle in the kernel.
 

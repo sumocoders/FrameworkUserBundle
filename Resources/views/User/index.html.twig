@@ -1,44 +1,44 @@
 {% extends '::base.html.twig' %}
 
 {% block header_title %}
-    <h2>
-        {{ 'user.header.title.index'|trans|capitalize }}
-    </h2>
+  <h2>
+    {{ 'user.header.title.index'|trans|capitalize }}
+  </h2>
 {% endblock %}
 
 {% block header_navigation %}
-    <ul>
-        <li>
-            <a class="icon icon-add" href="{{ path('sumocoders_frameworkuser_user_new') }}">{{ 'header.navigation.actions.add'|trans|capitalize }}</a>
-        </li>
-    </ul>
+    {% if is_granted('ROLE_SUPER_ADMIN') %}
+        <a class="btn btn-info" href="{{ path('sumocoders_frameworkuser_user_new') }}">
+            {{ icon('plus') }}
+            {{ 'header.navigation.actions.add'|trans|capitalize }}
+        </a>
+    {% endif %}
 {% endblock %}
 
 {% block main %}
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th>{{ 'user.datagrids.headers.username'|trans|capitalize }}</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for article in dgUsers %}
-                <tr class="{% if not article.enabled %}striked{% endif %}">
-                    <td>{{ article.username }}</td>
-                    <td class="action">
-                        <a href="{{ path('sumocoders_frameworkuser_user_edit', {'id': article.id}) }}" class="icon icon-edit">
-                            <span class="hide">
-                                {{ 'datagrids.actions.edit'|trans }}
-                            </span>
-                        </a>
-                    </td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    {{ knp_pagination_render(dgUsers) }}
-
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>{{ 'user.datagrids.headers.username'|trans|capitalize }}</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for article in dgUsers %}
+        <tr class="{% if not article.enabled %}striked{% endif %}">
+          <td>{{ article.username }}</td>
+          <td class="action">
+            <a href="{{ path('sumocoders_frameworkuser_user_edit', {'id': article.id}) }}" class="icon icon-edit">
+              <span class="hide">
+                {{ 'datagrids.actions.edit'|trans }}
+              </span>
+            </a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {{ knp_pagination_render(dgUsers) }}
 {% endblock %}
 
 

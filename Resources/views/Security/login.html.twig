@@ -3,7 +3,7 @@
 
 {% block header_title %}
     <h2>
-        {{ 'header.title.login'|trans({},'messages')|capitalize }}
+        {{ 'user.header.title.login'|trans({},'messages')|capitalize }}
     </h2>
 {% endblock %}
 
@@ -20,7 +20,7 @@
         <fieldset>
             <div class="form-group">
                 <label class="control-label" for="username">
-                    {{ 'security.login.username'|trans }}<abbr title="{{ 'forms.errors.fieldIsRequired'|trans({},'messages')|capitalize }}">*</abbr>
+                    {{ 'security.login.username'|trans }}<abbr title="{{ 'forms.labels.required'|trans({},'messages')|capitalize }}">*</abbr>
                 </label>
 
                 <div class="input-group">
@@ -31,7 +31,7 @@
 
             <div class="form-group">
                 <label class="control-label" for="password">
-                    {{ 'security.login.password'|trans }}<abbr title="{{ 'forms.errors.fieldIsRequired'|trans({},'messages')|capitalize }}">*</abbr>
+                    {{ 'security.login.password'|trans }}<abbr title="{{ 'forms.labels.required'|trans({},'messages')|capitalize }}">*</abbr>
                 </label>
 
                 <div class="input-group">
@@ -50,12 +50,12 @@
                 <div class="col-md-6">
                     <div class="forgotPassword">
                         <small>
-                            <a href="{{ path('fos_user_resetting_request') }}">{{ 'forms.login.action.forgotPassword'|trans({},'messages')|capitalize }}</a>
+                            <a href="{{ path('fos_user_resetting_request') }}">{{ 'user.forms.buttons.forgotPassword'|trans({},'messages')|capitalize }}</a>
                         </small>
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <button class="btn btn-primary pull-right" type="submit" id="submit" name="_submit">
+                    <button class="btn btn-success pull-right" type="submit" id="submit" name="_submit">
                         {{ 'security.login.submit'|trans }}<i class="icon iconArrowWhiteRight"></i>
                     </button>
                 </div>

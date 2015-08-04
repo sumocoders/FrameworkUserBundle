@@ -2,6 +2,10 @@ ROLE_ADMIN: beheerder
 ROLE_SUPER_ADMIN: administrator
 
 user:
+    breadcrumb:
+        new: gebruiker toevoegen
+        edit: gebruiker bewerken
+
     datagrids:
         headers:
             username: gebruikersnaam
@@ -9,13 +13,24 @@ user:
     forms:
         buttons:
             block: blokkeer
+            forgotPassword: Wachtwoord vergeten?
             unblock: deblokkeer
 
     header:
         title:
+            checkEmail: bekijk je inbox
             edit: bewerk %username%
             index: gebruikers
+            login: aanmelden
+            passwordAlreadRequested: wachtwoord werd al aangevraagd
+            reset: stel je wachtwoor opnieuw in
+            request: vraag nieuw wachtwoord aan
             new: gebruiker toevoegen
+
+        actions:
+            new: gebruiker toevoegen
+            logout: afmelden
+            settings: instellingen
 
     menu:
         current_user: huidige gebruiker
