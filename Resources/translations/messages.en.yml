@@ -42,3 +42,15 @@ user:
         logout: logout
         settings: settings
         users: users
+
+    flash:
+        success:
+            add: User %username% is added.
+            edit: User %username% is saved.
+            blocked: User %username% is blocked.
+            unblocked: User %username% is unblocked.
+
+    dialogs:
+        messages:
+            confirmBlock: Are you sure you want to block %entity%?
+            confirmUnblock: Are you sure you want to unblock %entity%?
