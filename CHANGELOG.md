@@ -2,10 +2,13 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## [Unreleased][unreleased]
+## [1.5.0]
 ### Changes
 * New look & feel
 * Redirect to the login after resetting password
+* Autofocus first form field
+* Add missing locale
+* Change logo class
 
 ### Fixed
 * Blocking/Unblocking is working from now on
