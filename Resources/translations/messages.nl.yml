@@ -37,3 +37,15 @@ user:
         logout: afmelden
         settings: instellingen
         users: gebruikers
+
+    flash:
+        success:
+            add: Gebruiker %username% is toegevoegd.
+            edit: Gebruiker %username% is opgeslaan.
+            blocked: Gebruiker %username% is geblokkeerd.
+            unblocked: Gebruiker %username% is deblokkeerd.
+
+    dialogs:
+        messages:
+            confirmBlock: Bent u zeker dat u %entity% wilt blokkeren?
+            confirmUnblock: Bent u zeker dat u %entity% wilt deblokkeren?
