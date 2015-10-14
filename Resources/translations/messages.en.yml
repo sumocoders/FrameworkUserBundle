@@ -2,6 +2,9 @@ ROLE_ADMIN: administrator
 ROLE_SUPER_ADMIN: super administrator
 
 user:
+    user:
+        roles: roles
+
     breadcrumb:
         new: add user
         edit: edit user

@@ -2,6 +2,9 @@ ROLE_ADMIN: beheerder
 ROLE_SUPER_ADMIN: administrator
 
 user:
+    user:
+        roles: rollen
+
     breadcrumb:
         new: gebruiker toevoegen
         edit: gebruiker bewerken
