@@ -6,11 +6,9 @@ use SumoCoders\FrameworkUserBundle\Entity\User;
 use SumoCoders\FrameworkUserBundle\Form\OtherUserType;
 use SumoCoders\FrameworkUserBundle\Form\OwnUserType;
 use SumoCoders\FrameworkUserBundle\Form\UserType;
-
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
