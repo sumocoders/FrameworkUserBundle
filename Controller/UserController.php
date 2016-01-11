@@ -265,13 +265,15 @@ class UserController extends Controller
             $route = 'sumocoders_frameworkuser_user_block';
             $label = 'user.forms.buttons.block';
             $message = 'user.dialogs.messages.confirmBlock';
-            $class = 'fa fa-remove btn-danger';
+            $class = 'btn-danger';
+            $icon = 'fa fa-remove';
         }
         if ('unblock' === $action) {
             $route = 'sumocoders_frameworkuser_user_unblock';
             $label = 'user.forms.buttons.unblock';
             $message = 'user.dialogs.messages.confirmUnblock';
-            $class = 'fa fa-check btn-success';
+            $class = 'btn-success';
+            $icon = 'fa fa-check';
         }
 
         return $this->createFormBuilder()
@@ -288,6 +290,7 @@ class UserController extends Controller
                 'submit',
                 'submit',
                 array(
+                    'icon' => $icon,
                     'label' => ucfirst($this->get('translator')->trans($label)),
                     'attr' => array(
                         'class' => 'confirm ' . $class,
