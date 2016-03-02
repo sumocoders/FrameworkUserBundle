@@ -152,8 +152,7 @@ class UserController extends Controller
                 )
             );
 
-        /** @var \Symfony\Component\Form\Extension\Csrf\CsrfProvider\CsrfTokenManagerAdapter $csrfProvider */
-        $csrfProvider = $this->get('form.csrf_provider');
+        $csrfProvider = $this->get('security.csrf.token_manager');
         /** @var \Symfony\Component\HttpFoundation\Session\Session $session */
         $session = $this->get('session');
         /** @var \Symfony\Bundle\FrameworkBundle\Translation\Translator $translator */
