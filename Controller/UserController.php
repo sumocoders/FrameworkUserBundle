@@ -32,7 +32,7 @@ class UserController extends Controller
         $paginator = $this->get('knp_paginator');
         $paginatedUsers = $paginator->paginate(
             $users,
-            $this->get('request')->query->get('page', 1)
+            $this->get('request_stack')->getCurrentRequest()->query->get('page', 1)
         );
 
         return array(
