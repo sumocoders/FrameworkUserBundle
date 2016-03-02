@@ -13,6 +13,8 @@
   "minimum-stability": "dev",
   "prefer-stable": true,
   "require": {
+	 "php": "^5.5 || ^7.0",
+	  
     "friendsofsymfony/user-bundle": "^2.0@dev",
     "knplabs/knp-paginator-bundle": "^2.5"
   },
