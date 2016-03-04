@@ -32,7 +32,7 @@ class UserController extends Controller
         $paginator = $this->get('knp_paginator');
         $paginatedUsers = $paginator->paginate(
             $users,
-            $this->get('request')->query->get('page', 1)
+            $this->get('request_stack')->getCurrentRequest()->query->get('page', 1)
         );
 
         return array(
@@ -152,8 +152,7 @@ class UserController extends Controller
                 )
             );
 
-        /** @var \Symfony\Component\Form\Extension\Csrf\CsrfProvider\CsrfTokenManagerAdapter $csrfProvider */
-        $csrfProvider = $this->get('form.csrf_provider');
+        $csrfProvider = $this->get('security.csrf.token_manager');
         /** @var \Symfony\Component\HttpFoundation\Session\Session $session */
         $session = $this->get('session');
         /** @var \Symfony\Bundle\FrameworkBundle\Translation\Translator $translator */
