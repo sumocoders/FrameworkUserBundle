@@ -235,7 +235,7 @@ class UserController extends Controller
 
         return array(
             'form' => $form->createView(),
-            'token' => $csrfProvider->generateCsrfToken('block_unblock'),
+            'token' => $csrfProvider->getToken('block_unblock'),
             'user' => $user,
             'form_block_unblock' => $blockUnblockForm->createView(),
         );
